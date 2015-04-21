@@ -7,6 +7,10 @@
 //============================================================================
 
 #include <iostream>
+#include "Files.h"
+#include "Cidade.h"
+#include "Viagem.h"
+
 using namespace std;
 
 int main() {

@@ -40,9 +40,12 @@ int File::readFile(){
 			getline(file, nome);
 			file >> classificacao;
 			file >> tempo;
-			Cidade(nome, classificacao, tempo);
-
-
+			Cidade nome = Cidade (nome, classificacao, tempo);
+			int j = 0;
+			while(j < (n_cidades-(i+1))){
+				file >> distancias;
+				nome.addDistancia(distancias);
+			}
 		}
 	}
 	else{

@@ -21,11 +21,12 @@ class Cidade{
 	list<int> distancias; // lista que guarda as distancias entre as cidades
 
 public:
-	Cidade(string n, int c, int t, list<int> d);
+	Cidade(string n, int c, int t);
 	string getNome();
 	int getClassificacao();
 	int getTempo();
 	list<int> getDistancias();
+	void addDistancia(int d);
 };
 
 

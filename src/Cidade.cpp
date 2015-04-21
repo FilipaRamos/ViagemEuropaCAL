@@ -7,11 +7,10 @@
 
 #include "Cidade.h"
 
-Cidade::Cidade(string n, int c, int t, list<int> d){
+Cidade::Cidade(string n, int c, int t){
 	nome = n;
 	classificacao = c;
 	tempo = t;
-	distancias = d;
 }
 
 string Cidade::getNome(){
@@ -28,4 +27,12 @@ int Cidade::getTempo(){
 
 list<int> Cidade::getDistancias(){
 	return distancias;
+}
+
+void Cidade::addDistancia(int d){
+	/*
+	 * vai permitir que as distâncias fiquem ordenadas
+	 * segundo a ordem em que foram introduzidas no txt
+	 */
+	distancias.push_back(d);  /////// VERIFICAR ESTE PUSH!!!!
 }
