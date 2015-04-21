@@ -1,11 +1,12 @@
 /*
  * Graph.h
- */
+*/
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
 #include <vector>
 #include <queue>
+
 using namespace std;
 
 template <class T> class Edge;
@@ -238,7 +239,6 @@ int Graph<T>::maxNewChildren(Vertex<T> *v, T &inf) const {
 	}
 	return maxChildren;
 }
-
 
 
 #endif /* GRAPH_H_ */
