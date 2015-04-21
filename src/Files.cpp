@@ -29,22 +29,22 @@
 int File::readFile(){
 	ifstream file;
 	int n_cidades;
-	string nome;
-	int classificacao;
-	int tempo;
+	string nm;
+	int cls;
+	int tmp;
 	int distancias;
 	if(file.is_open()){
 		file >> tempo_disponivel; // guardar o tempo disponível numa variável geral
 		file >> n_cidades; // guardar o número de cidades
 		for(int i = 0; i < n_cidades; ++i){ // ler a informação sobre as cidades
-			getline(file, nome);
-			file >> classificacao;
-			file >> tempo;
-			Cidade nome = Cidade (nome, classificacao, tempo);
+			getline(file, nm);
+			file >> cls;
+			file >> tmp;
+			Cidade cidade (nm, cls, tmp);
 			int j = 0;
 			while(j < (n_cidades-(i+1))){
 				file >> distancias;
-				nome.addDistancia(distancias);
+				cidade.addDistancia(distancias);
 			}
 		}
 	}
