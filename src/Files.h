@@ -14,10 +14,12 @@
 
 using namespace std;
 
+int tempo_disponivel;
+
 class File{
 	string file_name;
 	public:
-		void readFile();
+		int readFile();
 		void saveFile();
 };
 

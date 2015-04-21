@@ -1,0 +1,32 @@
+/*
+ * Cidade.h
+ *
+ *  Created on: 21/04/2015
+ *      Author: Filipa
+ */
+
+#ifndef CIDADE_H_
+#define CIDADE_H_
+
+#include <iostream>
+#include <string>
+#include <list>
+
+using namespace std;
+
+class Cidade{
+	string nome; // nome da cidade
+	int classificacao; // classificação atribuida à cidade
+	int tempo; // tempo que quer passar na cidade
+	list<int> distancias; // lista que guarda as distancias entre as cidades
+
+public:
+	Cidade(string n, int c, int t, list<int> d);
+	string getNome();
+	int getClassificacao();
+	int getTempo();
+	list<int> getDistancias();
+};
+
+
+#endif /* CIDADE_H_ */
