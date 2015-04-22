@@ -26,9 +26,15 @@
  * --> retorna 0 em caso de falha na leitura do ficheiro
  * --> retorna 1 em caso de sucesso
  */
+
+File::File(string n){
+	file_name = n;
+}
+
 int File::readFile(){
 
 	ifstream file;
+	file.open(file_name.c_str());
 	int tempo_disponivel;
 	int n_cidades;
 	string nm;

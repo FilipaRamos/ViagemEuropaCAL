@@ -13,9 +13,11 @@
 
 using namespace std;
 
-int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+int main(){
+	int tempo_total;
+	File file ("teste.txt");
+	tempo_total = file.readFile();
+	cout << tempo_total << endl;
 	return 0;
 }
-
 
