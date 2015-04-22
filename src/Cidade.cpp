@@ -25,7 +25,7 @@ int Cidade::getTempo(){
 	return tempo;
 }
 
-list<int> Cidade::getDistancias(){
+list<int>& Cidade::getDistancias(){
 	return distancias;
 }
 

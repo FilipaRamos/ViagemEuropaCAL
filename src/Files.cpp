@@ -54,17 +54,15 @@ int File::readFile(){
 			getline(file, nm);
 			file >> cls;
 			file >> tmp;
-			file.ignore();
 			Cidade cidade (nm, cls, tmp);
 			int j = 0;
 			while(j < (n_cidades-(i+1))){
 				file >> distancias;
+				file.ignore();
 				cidade.addDistancia(distancias);
 				++j;
 			}
 			v.getCidades().push_back(cidade);
-			cout << v.getCidades().at(i).getNome() << endl;
-			//cout << v.getCidades()[i].getTempo() << endl;
 		}
 	}
 

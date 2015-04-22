@@ -25,7 +25,7 @@ public:
 	string getNome();
 	int getClassificacao();
 	int getTempo();
-	list<int> getDistancias();
+	list<int>& getDistancias();
 	void addDistancia(int d);
 };
 
