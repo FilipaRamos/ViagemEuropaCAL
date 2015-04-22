@@ -27,12 +27,15 @@
  * --> retorna 1 em caso de sucesso
  */
 int File::readFile(){
+
 	ifstream file;
+	int tempo_disponivel;
 	int n_cidades;
 	string nm;
 	int cls;
 	int tmp;
 	int distancias;
+
 	if(file.is_open()){
 		file >> tempo_disponivel; // guardar o tempo disponível numa variável geral
 		file >> n_cidades; // guardar o número de cidades
@@ -48,10 +51,13 @@ int File::readFile(){
 			}
 		}
 	}
+
 	else{
 		cout << "----  Error reading file!  ---- " << endl;
 		return 0;
 	}
+
+	return tempo_disponivel;
 
 }
 
