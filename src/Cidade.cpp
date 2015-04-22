@@ -34,5 +34,5 @@ void Cidade::addDistancia(int d){
 	 * vai permitir que as distâncias fiquem ordenadas
 	 * segundo a ordem em que foram introduzidas no txt
 	 */
-	distancias.push_back(d);  /////// VERIFICAR ESTE PUSH!!!!
+	distancias.push_back(d);
 }
