@@ -4,10 +4,8 @@
  *  Created on: 21/04/2015
  *      Author: Filipa
  */
-#include <fstream>
-#include "Cidade.h"
+
 #include "Files.h"
-#include "Viagem.h"
 
 /*
  * Formato dos ficheiros a serem lidos
@@ -70,7 +68,7 @@ int File::readFile(){
 		cout << "----  Error reading file!  ---- " << endl;
 		return 0;
 	}
-
+	viagem = v;
 	return tempo_disponivel;
 
 }

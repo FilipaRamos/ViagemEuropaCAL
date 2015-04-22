@@ -10,12 +10,16 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
+#include "Viagem.h"
+#include "Cidade.h"
 
 using namespace std;
 
 class File{
 	string file_name;
 	public:
+		Viagem viagem;
 		File(string n);
 		int readFile();
 		void saveFile();
