@@ -4,7 +4,10 @@
  *  Created on: 21/04/2015
  *      Author: Filipa
  */
+#include <fstream>
+#include "Cidade.h"
 #include "Files.h"
+#include "Viagem.h"
 
 /*
  * Formato dos ficheiros a serem lidos
@@ -35,6 +38,7 @@ int File::readFile(){
 
 	ifstream file;
 	file.open(file_name.c_str());
+	Viagem v;
 	int tempo_disponivel;
 	int n_cidades;
 	string nm;
@@ -45,16 +49,22 @@ int File::readFile(){
 	if(file.is_open()){
 		file >> tempo_disponivel; // guardar o tempo disponível numa variável geral
 		file >> n_cidades; // guardar o número de cidades
+		file.ignore();
 		for(int i = 0; i < n_cidades; ++i){ // ler a informação sobre as cidades
 			getline(file, nm);
 			file >> cls;
 			file >> tmp;
+			file.ignore();
 			Cidade cidade (nm, cls, tmp);
 			int j = 0;
 			while(j < (n_cidades-(i+1))){
 				file >> distancias;
 				cidade.addDistancia(distancias);
+				++j;
 			}
+			v.getCidades().push_back(cidade);
+			cout << v.getCidades().at(i).getNome() << endl;
+			//cout << v.getCidades()[i].getTempo() << endl;
 		}
 	}
 

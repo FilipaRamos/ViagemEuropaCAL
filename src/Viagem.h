@@ -20,7 +20,9 @@ class Viagem{
 	vector<Cidade> cidades; // vetor onde são guardadas as cidades
 
 public:
-	vector<Cidade> getCidades();
+	Viagem();
+	vector<Cidade>& getCidades();
+	void imprimirCidades();
 };
 
 #endif /* VIAGEM_H_ */

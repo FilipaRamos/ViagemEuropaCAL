@@ -10,8 +10,6 @@
 
 #include <string>
 #include <iostream>
-#include <fstream>
-#include "Cidade.h"
 
 using namespace std;
 

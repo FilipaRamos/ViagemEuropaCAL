@@ -15,7 +15,9 @@ using namespace std;
 
 int main(){
 	int tempo_total;
-	File file ("teste.txt");
+	string nome = "teste.txt";
+	cout << nome << endl;
+	File file (nome);
 	tempo_total = file.readFile();
 	cout << tempo_total << endl;
 	return 0;

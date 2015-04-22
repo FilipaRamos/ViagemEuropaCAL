@@ -9,9 +9,16 @@
 
 using namespace std;
 
-vector<Cidade> Viagem::getCidades(){
+Viagem::Viagem(){}
+
+vector<Cidade>& Viagem::getCidades(){
 	return cidades;
 }
 
-
+void Viagem::imprimirCidades(){
+	for(int i = 0; i < cidades.size(); i++){
+		cout << cidades[i].getNome() << endl;
+		cout << cidades[i].getTempo() << endl;
+	}
+}
 
