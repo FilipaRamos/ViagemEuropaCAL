@@ -46,7 +46,7 @@ void Path::createGraphClassificacao(){
 	while (class_max > 0) {
 		for (int i = 0; i < cidades.size(); ++i) {
 			if (cidades[i].getClassificacao() == class_max) {
-				g.addVertex(cidades[i].getNome());
+				g.addVertex(cidades[i]);
 			}
 		}
 		if(calculaTempo() < tempoDisponivel){
