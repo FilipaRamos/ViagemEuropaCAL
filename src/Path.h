@@ -15,7 +15,7 @@
 #include "Graph.h"
 
 class Path{
-	Graph<string> g;
+	Graph<Cidade> g;
 public:
 	Path();
 	void createGraphClassificacao();
