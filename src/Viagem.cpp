@@ -16,7 +16,7 @@ vector<Cidade>& Viagem::getCidades(){
 }
 
 void Viagem::imprimirCidades(){
-	for(int i = 0; i < cidades.size(); i++){
+	for(unsigned int i = 0; i < cidades.size(); i++){
 		cout << cidades[i].getNome() << endl;
 		cout << cidades[i].getTempo() << endl;
 	}
