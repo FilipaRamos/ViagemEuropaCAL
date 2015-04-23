@@ -8,11 +8,19 @@
 #ifndef SRC_PATH_H_
 #define SRC_PATH_H_
 
-class Path{
+#include "Path.h"
+#include "Cidade.h"
+#include "Viagem.h"
+#include "Files.h"
+#include "Graph.h"
 
+class Path{
+	Graph<string> g;
 public:
 	Path();
-	void createGraph();
+	void createGraphClassificacao();
+	bool verifica(Cidade c, int tempoDisponivel);
+	int	calculaTempo();
 };
 
 

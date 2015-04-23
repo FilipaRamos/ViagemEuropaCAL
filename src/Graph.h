@@ -22,6 +22,7 @@ class Vertex {
 public:
 	Vertex(T in);
 	friend class Graph<T>;
+	T getInfo(){return info;};
 };
 
 

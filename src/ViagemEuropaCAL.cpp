@@ -12,7 +12,6 @@
 #include "Viagem.h"
 
 using namespace std;
-
 int main(){
 	int tempo_total;
 	string nome = "teste.txt";

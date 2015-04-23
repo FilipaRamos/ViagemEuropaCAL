@@ -36,7 +36,6 @@ int File::readFile(){
 
 	ifstream file;
 	file.open(file_name.c_str());
-	Viagem v;
 	int tempo_disponivel;
 	int n_cidades;
 	string nm;
@@ -60,7 +59,7 @@ int File::readFile(){
 				cidade.addDistancia(distancias);
 				++j;
 			}
-			v.getCidades().push_back(cidade);
+			viagem.getCidades().push_back(cidade);
 		}
 	}
 
@@ -68,7 +67,7 @@ int File::readFile(){
 		cout << "----  Error reading file!  ---- " << endl;
 		return 0;
 	}
-	viagem = v;
+
 	return tempo_disponivel;
 
 }
