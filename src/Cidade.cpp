@@ -43,12 +43,3 @@ bool Cidade::operator == (Cidade c){
 	return false;
 }
 
-
-bool Cidade::operator==(Cidade &c) const{
-	return (nome == c.getNome());
-}
-
-bool Cidade::operator==(const Cidade &c){
-	Cidade cidade = c;
-	return (nome == cidade.getNome());
-}
