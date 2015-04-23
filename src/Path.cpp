@@ -15,9 +15,11 @@ Path::Path(){}
 int	Path::calculaTempo(){
 	int res = 0;
 	for(size_t i=0; i<g.getVertexSet().size(); ++i){
-		res += g.getVertexSet().at(i)->getInfo().getTempo();
-		// FALTA SOMAR OS TEMPOS DE VIAGEM ENTRE AS CIDADES
+		for(size_t j=0; j < g.getVertexSet().at(i)->getAdj().size(); ++j){
+			res += g.getVertexSet().at(i)->getInfo().getTempo() + g.getVertexSet().at(i)->getAdj().at(j).getWeight();
+		}
 	}
+	cout << res << endl;
 	return res;
 }
 
@@ -44,7 +46,7 @@ void Path::createGraphClassificacao(){
 	vector<Cidade> cidades = f.viagem.getCidades();
 	int class_max = 10;
 	while (class_max > 0) {
-		for (int i = 0; i < cidades.size(); ++i) {
+		for (size_t i = 0; i < cidades.size(); ++i) {
 			if (cidades[i].getClassificacao() == class_max) {
 				g.addVertex(cidades[i]);
 			}

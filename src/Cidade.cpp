@@ -14,7 +14,7 @@ Cidade::Cidade(string n, int c, int t){
 }
 
 string Cidade::getNome(){
-	return nome;
+	return this->nome;
 }
 
 int Cidade::getClassificacao(){
@@ -35,4 +35,14 @@ void Cidade::addDistancia(int d){
 	 * segundo a ordem em que foram introduzidas no txt
 	 */
 	distancias.push_back(d);
+}
+
+
+bool Cidade::operator==(Cidade &c) const{
+	return (nome == c.getNome());
+}
+
+bool Cidade::operator==(const Cidade &c){
+	Cidade cidade = c;
+	return (nome == cidade.getNome());
 }

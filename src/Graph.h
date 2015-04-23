@@ -23,6 +23,7 @@ public:
 	Vertex(T in);
 	friend class Graph<T>;
 	T getInfo(){return info;};
+	vector<Edge<T>  > getAdj(){return adj;};
 };
 
 
@@ -56,8 +57,10 @@ class Edge {
 	double weight;
 public:
 	Edge(Vertex<T> *d, double w);
+	double getWeight(){return weight;};
 	friend class Graph<T>;
 	friend class Vertex<T>;
+
 };
 
 template <class T>
@@ -153,8 +156,6 @@ bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
 	if (found!=2) return false;
 	return vS->removeEdgeTo(vD);
 }
-
-
 
 
 template <class T>

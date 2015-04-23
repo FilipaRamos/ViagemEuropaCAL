@@ -27,6 +27,8 @@ public:
 	int getTempo();
 	list<int>& getDistancias();
 	void addDistancia(int d);
+	bool operator==(Cidade & c) const;
+	bool operator==(const Cidade &c);
 };
 
 
