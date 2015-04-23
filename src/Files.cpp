@@ -47,6 +47,7 @@ int File::readFile(){
 		file >> tempo_disponivel; // guardar o tempo disponível numa variável geral
 		file >> n_cidades; // guardar o número de cidades
 		file.ignore();
+		numCidades = n_cidades;
 		for(int i = 0; i < n_cidades; ++i){ // ler a informação sobre as cidades
 			getline(file, nm);
 			file >> cls;
