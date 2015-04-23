@@ -14,7 +14,7 @@ Cidade::Cidade(string n, int c, int t){
 }
 
 string Cidade::getNome(){
-	return nome;
+	return this->nome;
 }
 
 int Cidade::getClassificacao(){
@@ -41,4 +41,14 @@ bool Cidade::operator == (Cidade c){
 	if(nome == c.getNome())
 		return true;
 	return false;
+}
+
+
+bool Cidade::operator==(Cidade &c) const{
+	return (nome == c.getNome());
+}
+
+bool Cidade::operator==(const Cidade &c){
+	Cidade cidade = c;
+	return (nome == cidade.getNome());
 }

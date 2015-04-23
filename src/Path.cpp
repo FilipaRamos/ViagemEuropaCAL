@@ -15,9 +15,11 @@ Path::Path(){}
 int	Path::calculaTempo(){
 	int res = 0;
 	for(size_t i=0; i<g.getVertexSet().size(); ++i){
-		res += g.getVertexSet().at(i)->getInfo().getTempo();
-		// FALTA SOMAR OS TEMPOS DE VIAGEM ENTRE AS CIDADES
+		for(size_t j=0; j < g.getVertexSet().at(i)->getAdj().size(); ++j){
+			res += g.getVertexSet().at(i)->getInfo().getTempo() + g.getVertexSet().at(i)->getAdj().at(j).getWeight();
+		}
 	}
+	cout << res << endl;
 	return res;
 }
 
@@ -43,11 +45,16 @@ void Path::createGraph(){
 	int tempoDisponivel = f.readFile();
 	vector<Cidade> cidades = f.viagem.getCidades();
 	int class_max = 10;
+<<<<<<< HEAD
 	g.addVertex(cidades[0]); // adicionar a cidade de partida
 	int tempo_utilizado = calculaTempo();
 
 	while (tempo_utilizado < tempoDisponivel) { // enquanto houver tempo disponível adicionar vértices
 		for (unsigned int i = 1; i <= cidades.size(); ++i) {
+=======
+	while (class_max > 0) {
+		for (size_t i = 0; i < cidades.size(); ++i) {
+>>>>>>> origin/master
 			if (cidades[i].getClassificacao() == class_max) {
 				g.addVertex(cidades[i]);
 			}
