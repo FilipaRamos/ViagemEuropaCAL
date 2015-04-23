@@ -4,7 +4,7 @@
  *  Created on: 23/04/2015
  *      Author: Mariana
  */
-
+/*
 #include "DisplayGraph.h"
 #include "graphviewer.h"
 
@@ -24,3 +24,4 @@ DisplayGraph::~DisplayGraph() {
 	// TODO Auto-generated destructor stub
 }
 
+*/
