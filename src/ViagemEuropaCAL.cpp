@@ -10,6 +10,7 @@
 #include "Files.h"
 #include "Cidade.h"
 #include "Viagem.h"
+#include "DisplayGraph.h"
 
 using namespace std;
 int main(){
@@ -19,6 +20,9 @@ int main(){
 	File file (nome);
 	tempo_total = file.readFile();
 	cout << tempo_total << endl;
+	DisplayGraph g;
+	g.Display();
+	cin.get();
 	return 0;
 }
 

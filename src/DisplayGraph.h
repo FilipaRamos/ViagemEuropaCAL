@@ -9,13 +9,14 @@
 #define SRC_DISPLAYGRAPH_H_
 
 #include <cstdio>
-#include "graphviewer.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "graphviewer.h"
 
 class DisplayGraph {
 public:
+	DisplayGraph();
 	void Display();
 };
 
