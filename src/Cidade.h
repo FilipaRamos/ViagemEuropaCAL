@@ -26,7 +26,7 @@ public:
 	int getClassificacao();
 	int getTempo();
 	list<int>& getTemposViagem();
-	void addDistancia(int d);
+	void addTempoViagem(int d);
 	bool operator == (Cidade c);
 };
 

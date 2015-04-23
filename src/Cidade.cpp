@@ -29,7 +29,7 @@ list<int>& Cidade::getTemposViagem(){
 	return tempos_viagem;
 }
 
-void Cidade::addDistancia(int d){
+void Cidade::addTempoViagem(int d){
 	/*
 	 * vai permitir que as distâncias fiquem ordenadas
 	 * segundo a ordem em que foram introduzidas no txt
