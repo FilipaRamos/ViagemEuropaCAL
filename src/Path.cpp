@@ -43,20 +43,16 @@ void Path::createGraph(){
 	int tempoDisponivel = f.readFile();
 	vector<Cidade> cidades = f.viagem.getCidades();
 	int class_max = 10;
-	bool found = false;
 	g.addVertex(cidades[0]); // adicionar a cidade de partida
+	int tempo_utilizado = calculaTempo();
 
-	while (calculaTempo() < tempoDisponivel) { // enquanto houver tempo disponível adicionar vértices
+	while (tempo_utilizado < tempoDisponivel) { // enquanto houver tempo disponível adicionar vértices
 		for (unsigned int i = 1; i <= cidades.size(); ++i) {
 			if (cidades[i].getClassificacao() == class_max) {
 				g.addVertex(cidades[i]);
-				found = true;
 			}
 		}
-		if(found == false){
-			class_max--;
-		}
-		found = false;
+		class_max--;
 
 	}
 
