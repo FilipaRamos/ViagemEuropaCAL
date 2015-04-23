@@ -37,28 +37,32 @@ bool Path::verifica(Cidade c, int tempoDisponivel){
 }
 
 /*
- * Função na qual vai ser criado o grafo com as cidades considerando a classificação
+ * Função na qual vai ser criado o grafo com as cidades
  */
-void Path::createGraphClassificacao(){
+void Path::createGraph(){
 
 	File f("teste.txt");
 	int tempoDisponivel = f.readFile();
 	vector<Cidade> cidades = f.viagem.getCidades();
 	int class_max = 10;
+<<<<<<< HEAD
+	g.addVertex(cidades[0]); // adicionar a cidade de partida
+	int tempo_utilizado = calculaTempo();
+
+	while (tempo_utilizado < tempoDisponivel) { // enquanto houver tempo disponível adicionar vértices
+		for (unsigned int i = 1; i <= cidades.size(); ++i) {
+=======
 	while (class_max > 0) {
 		for (size_t i = 0; i < cidades.size(); ++i) {
+>>>>>>> origin/master
 			if (cidades[i].getClassificacao() == class_max) {
 				g.addVertex(cidades[i]);
 			}
 		}
-		if(calculaTempo() < tempoDisponivel){
-			class_max--;
-		}
-		else{
-			break;
-		}
+		class_max--;
 
 	}
+
 
 }
 

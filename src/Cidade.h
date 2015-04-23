@@ -18,17 +18,21 @@ class Cidade{
 	string nome; // nome da cidade
 	int classificacao; // classificação atribuida à cidade
 	int tempo; // tempo que quer passar na cidade
-	list<int> distancias; // lista que guarda os tempos entre as cidades
+	list<int> tempos_viagem; // lista que guarda os tempos entre as cidades
 
 public:
 	Cidade(string n, int c, int t);
 	string getNome();
 	int getClassificacao();
 	int getTempo();
-	list<int>& getDistancias();
+	list<int>& getTemposViagem();
 	void addDistancia(int d);
+<<<<<<< HEAD
+	bool operator == (Cidade c);
+=======
 	bool operator==(Cidade & c) const;
 	bool operator==(const Cidade &c);
+>>>>>>> origin/master
 };
 
 

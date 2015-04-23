@@ -25,8 +25,8 @@ int Cidade::getTempo(){
 	return tempo;
 }
 
-list<int>& Cidade::getDistancias(){
-	return distancias;
+list<int>& Cidade::getTemposViagem(){
+	return tempos_viagem;
 }
 
 void Cidade::addDistancia(int d){
@@ -34,7 +34,13 @@ void Cidade::addDistancia(int d){
 	 * vai permitir que as distâncias fiquem ordenadas
 	 * segundo a ordem em que foram introduzidas no txt
 	 */
-	distancias.push_back(d);
+	tempos_viagem.push_back(d);
+}
+
+bool Cidade::operator == (Cidade c){
+	if(nome == c.getNome())
+		return true;
+	return false;
 }
 
 
