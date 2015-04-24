@@ -18,6 +18,7 @@ class Path{
 	Graph<Cidade> g;
 public:
 	Path();
+	Graph<Cidade>& getGraph(){return g;};
 	void createGraph();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();

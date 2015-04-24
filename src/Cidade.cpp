@@ -14,7 +14,7 @@ Cidade::Cidade(string n, int c, int t){
 }
 
 string Cidade::getNome(){
-	return this->nome;
+	return nome;
 }
 
 int Cidade::getClassificacao(){
