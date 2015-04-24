@@ -2,7 +2,7 @@
 #include <conio.h>
 
 using namespace std;
-
+/*
 	int i, j, k, n, min, g[20][20], c[20][20], s, s1[20][1], s2, lb;
 
 	for (i = 1; i <= n; i++) {
@@ -75,3 +75,4 @@ using namespace std;
 			<< 1 << "\n";
 	getch();
 	return (0);
+*/
