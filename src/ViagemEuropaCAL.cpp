@@ -19,10 +19,10 @@ int main(){
 
 	int tempo_total;
 	string nome = "teste.txt";
-	cout << nome << endl;
+	//cout << nome << endl;
 	File file (nome);
 	tempo_total = file.readFile();
-	cout << tempo_total << endl;
+	//cout << tempo_total << endl;
 
 	Knapsackproblemtestar();
 	DisplayGraph g;

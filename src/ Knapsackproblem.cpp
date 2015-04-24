@@ -15,13 +15,13 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 
 	vector<Cidade> res;
 
-	int a[v.getCidades().size()][p.calculaTempo()];
+	int a[v.getCidades().size()+1][p.calculaTempo()+1];
 	int iMax = 0;
 	int jMax = 0;
 	vector<pair<int,int> > classificacoes;
 
 	for(size_t i =0; i < v.getCidades().size()+1; ++i){
-		for(size_t j=0; j < p.calculaTempo(); ++j){
+		for(size_t j=0; j < p.calculaTempo()+1; ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}
@@ -74,10 +74,10 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<Cidade> teste;
 
-	Cidade c1("cenas", 7, 1);
-	Cidade c2("cenas", 5, 2);
-	Cidade c3("cenas", 8, 1);
-	Cidade c4("cenas", 10, 4);
+	Cidade c1("Amesterdam", 10, 4);
+	Cidade c2("Paris", 7, 1);
+	Cidade c3("Barcelona", 8, 4);
+	Cidade c4("Porto", 10, 4);
 	Cidade c5("cenas", 9, 3);
 
 	teste.push_back(c1);
@@ -88,14 +88,16 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<Cidade> res;
 
-	int a[6][6];
+	int a[teste.size()+1][teste.size()+1];
 	int iMax = 0;
 	int jMax = 0;
 
 	vector<pair<int,int> > classificacoes;
 
+	//cout << res.size() << endl;
+
 	for(size_t i=0; i < teste.size()+1 ; ++i){
-		for(size_t j=0; j < 6 ; ++j){
+		for(size_t j=0; j < teste.size()+1 ; ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}
@@ -122,12 +124,14 @@ vector<Cidade> Knapsackproblemtestar(){
 	}
 
 
-	for(size_t i=0; i<6; ++i){
-		for(size_t j=0; j<6; ++j){
+	for(size_t i=0; i<teste.size()+1; ++i){
+		for(size_t j=0; j<teste.size()+1; ++j){
 			cout << a[i][j] << " ";
 		}
 		cout << endl;
 	}
+
+
 
 	//encontrar o maximo das classificações
 	//TODO: MOSTRAR AO TRINDADE PARA CONFIRMAR
@@ -141,6 +145,11 @@ vector<Cidade> Knapsackproblemtestar(){
 	cout << jMax << endl;
 
 
+	for(size_t i=0; i<res.size(); ++i){
+		cout << res.size() << endl;
+		cout << res.at(i).getNome() << endl;
+	}
+
 	for(size_t i=iMax ; i > 0; --i){
 		for(size_t j=jMax; j > 0;){
 			if(a[i][j] != a[i-1][j]){
@@ -149,6 +158,7 @@ vector<Cidade> Knapsackproblemtestar(){
 			}
 		}
 	}
+
 
 	return res;
 
