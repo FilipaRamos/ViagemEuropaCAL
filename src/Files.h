@@ -20,7 +20,6 @@ class File{
 	string file_name;
 	public:
 		Viagem viagem;
-		int numCidades;
 		File(string n);
 		int readFile();
 		void saveFile();
