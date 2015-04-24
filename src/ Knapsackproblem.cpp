@@ -20,13 +20,13 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 	int jMax = 0;
 	vector<pair<int,int> > classificacoes;
 
-	for(size_t i =0; i < v.getCidades().size(); ++i){
+	for(size_t i =0; i < v.getCidades().size()+1; ++i){
 		for(size_t j=0; j < p.calculaTempo(); ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}
 			else{
-				if(p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo() >= j){
+				if(p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo() <= j){
 					int dif_tempos = p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo() - j;
 					if( p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + a[i-1][dif_tempos] > a[i-1][j]){
 						a[i][j] = p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + a[i-1][dif_tempos];
@@ -88,21 +88,22 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<Cidade> res;
 
-	int a[5][5];
+	int a[6][6];
 	int iMax = 0;
 	int jMax = 0;
+
 	vector<pair<int,int> > classificacoes;
 
-	for(size_t i =0; i <5 ; ++i){
-		for(size_t j=0; j < 5 ; ++j){
+	for(size_t i=0; i < teste.size()+1 ; ++i){
+		for(size_t j=0; j < 6 ; ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}
 			else{
-				if(teste.at(i).getTempo() <= j){
-					int dif_tempos = j - teste.at(i).getTempo();
-					if(( teste.at(i).getClassificacao() + a[i-1][dif_tempos] )> a[i-1][j]){
-						a[i][j] = teste.at(i).getClassificacao() + a[i-1][dif_tempos];
+				if(teste.at(i-1).getTempo() <= j){
+					int dif_tempos = j - teste.at(i-1).getTempo();
+					if(( teste.at(i-1).getClassificacao() + a[i-1][dif_tempos] ) > a[i-1][j]){
+						a[i][j] = teste.at(i-1).getClassificacao() + a[i-1][dif_tempos];
 					}
 					else {
 						a[i][j] = a[i-1][j];
@@ -121,8 +122,8 @@ vector<Cidade> Knapsackproblemtestar(){
 	}
 
 
-	for(size_t i=0; i<5; ++i){
-		for(size_t j=0; j<5; ++j){
+	for(size_t i=0; i<6; ++i){
+		for(size_t j=0; j<6; ++j){
 			cout << a[i][j] << " ";
 		}
 		cout << endl;
@@ -143,8 +144,8 @@ vector<Cidade> Knapsackproblemtestar(){
 	for(size_t i=iMax ; i > 0; --i){
 		for(size_t j=jMax; j > 0;){
 			if(a[i][j] != a[i-1][j]){
-				res.push_back(teste.at(i));
-				j -= teste.at(i).getTempo();
+				res.push_back(teste.at(i-1));
+				j -= teste.at(i-1).getTempo();
 			}
 		}
 	}
