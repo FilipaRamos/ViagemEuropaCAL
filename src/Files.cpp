@@ -12,7 +12,7 @@
  *
  * 1ª linha --> tempo disponível (em dias)
  * 2ª linha --> número de cidades a visitar
- * ... --> nome da cidade
+ * ... --> nome da cidade (primeira cidade é a de partida)
  * ... --> classificação (vontade de visitar)
  * ... --> tempo que quer passar na cidade
  * ... --> tempo que demora a viajar
