@@ -9,13 +9,7 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-Viagem::Viagem(){
-
-}
-=======
 Viagem::Viagem(){}
->>>>>>> origin/master
 
 vector<Cidade>& Viagem::getCidades(){
 	return cidades;
