@@ -3,11 +3,8 @@
 
 using namespace std;
 
-int main() {
-	File f("teste.txt");
 	int i, j, k, n, min, g[20][20], c[20][20], s, s1[20][1], s2, lb;
 
-	n = f.numCidades;
 	for (i = 1; i <= n; i++) {
 		for (j = 1; j <= n; j++) {
 			c[i][j] = 0;
@@ -78,4 +75,3 @@ int main() {
 			<< 1 << "\n";
 	getch();
 	return (0);
-}
