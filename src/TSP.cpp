@@ -4,7 +4,7 @@
 #include "Viagem.h"
 
 using namespace std;
-<<<<<<< HEAD
+
 /*
 =======
 
