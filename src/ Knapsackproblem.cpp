@@ -11,6 +11,14 @@
 
 using namespace std;
 
+
+/*
+ *
+ * Resolve o problema da mochila aplicado a Grafos.
+ * Seleciona as cidades a serem usadas... Maximizando o tempo e a classificação ...
+ * Retorna um vector com as Cidades a serem usadas na construção do grafo.
+ *
+ */
 vector<Cidade> Knapsackproblem(Viagem v, Path p){
 
 	vector<Cidade> res;
@@ -57,13 +65,16 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 	jMax = classificacoes.at(classificacoes.size() -1).second;
 
 
-	for(size_t i=iMax ; i > 0; --i){
-		for(size_t j=jMax; j > 0;){
-			if(a[i][j] != a[i-1][j]){
-				res.push_back(p.getGraph().getVertexSet().at(i-1)->getInfo());
-				j -= p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo();
-			}
+	size_t j=jMax;
+	size_t i=iMax;
+
+	while(i>0 && j>0){
+		if(a[i][j] != a[i-1][j]){
+			res.push_back(p.getGraph().getVertexSet().at(i-1)->getInfo());
+			j -= p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo();
+			i--;
 		}
+		else  i--;
 	}
 
 	return res;
@@ -74,9 +85,9 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<Cidade> teste;
 
-	Cidade c1("Amesterdam", 10, 4);
-	Cidade c2("Paris", 7, 1);
-	Cidade c3("Barcelona", 8, 4);
+	Cidade c1("Amesterdam", 7, 1);
+	Cidade c2("Paris", 5, 2);
+	Cidade c3("Barcelona", 8, 1);
 	Cidade c4("Porto", 10, 4);
 	Cidade c5("cenas", 9, 3);
 
@@ -94,7 +105,6 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<pair<int,int> > classificacoes;
 
-	//cout << res.size() << endl;
 
 	for(size_t i=0; i < teste.size()+1 ; ++i){
 		for(size_t j=0; j < teste.size()+1 ; ++j){
@@ -133,8 +143,9 @@ vector<Cidade> Knapsackproblemtestar(){
 
 
 
+
+
 	//encontrar o maximo das classificações
-	//TODO: MOSTRAR AO TRINDADE PARA CONFIRMAR
 
 	sort(classificacoes.begin(), classificacoes.end());
 
@@ -145,20 +156,30 @@ vector<Cidade> Knapsackproblemtestar(){
 	cout << jMax << endl;
 
 
-	for(size_t i=0; i<res.size(); ++i){
-		cout << res.size() << endl;
-		cout << res.at(i).getNome() << endl;
-	}
 
-	for(size_t i=iMax ; i > 0; --i){
-		for(size_t j=jMax; j > 0;){
-			if(a[i][j] != a[i-1][j]){
-				res.push_back(teste.at(i-1));
-				j -= teste.at(i-1).getTempo();
-			}
+	cout << res.size() << endl;
+
+
+
+	size_t j=jMax;
+	size_t i=iMax;
+
+	while(i>0 && j>0){
+		if(a[i][j] != a[i-1][j]){
+			res.push_back(teste.at(i-1));
+			j -= teste.at(i-1).getTempo();
+			i--;
 		}
+		else i--;
 	}
 
+	cout <<"///////////////////////////////////////////////////////////////////" << endl;
+
+	for(size_t i=0; i<res.size(); ++i){
+		cout << res[i].getNome() << endl;
+	}
+
+	cout <<"///////////////////////////////////////////////////////////////////" << endl;
 
 	return res;
 

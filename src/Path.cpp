@@ -61,10 +61,10 @@ void Path::createGraph() {
 	}
 }
 
-	/*
-	 * utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
-	 * depois de ser aplicada a resolução do problema da mochila
-	 */
+/*
+ * utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
+ * depois de ser aplicada a resolução do problema da mochila
+ */
 void Path::PathBranchBound(){
 
 }
