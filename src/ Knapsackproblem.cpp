@@ -59,7 +59,7 @@ vector<Cidade> Knapsackproblem(){
 	jMax = classificacoes.at(classificacoes.size() -1).second;
 
 
-	for(size_t i = iMax ; i > 0; --i){
+	for(size_t i=iMax ; i > 0; --i){
 		for(size_t j=jMax; j > 0;){
 			if(a[i][j] != a[i-1][j]){
 				res.push_back(p.getGraph().getVertexSet().at(i-1)->getInfo());
