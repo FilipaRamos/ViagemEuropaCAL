@@ -17,7 +17,6 @@
 using namespace std;
 
 class Viagem{
-	Graph<Cidade> g;
 	vector<Cidade> cidades; // vetor onde são guardadas as cidades
 
 public:

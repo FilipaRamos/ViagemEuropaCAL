@@ -9,11 +9,7 @@
 
 using namespace std;
 
-Viagem::Viagem(){
-	for(size_t i=0; i<cidades.size(); ++i){
-
-	}
-}
+Viagem::Viagem(){}
 
 vector<Cidade>& Viagem::getCidades(){
 	return cidades;

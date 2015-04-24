@@ -57,7 +57,7 @@ int File::readFile(){
 			while(j < (n_cidades-(i+1))){
 				file >> distancias;
 				file.ignore();
-				cidade.addDistancia(distancias);
+				cidade.addTempoViagem(distancias);
 				++j;
 			}
 			viagem.getCidades().push_back(cidade);
