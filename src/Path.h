@@ -22,6 +22,7 @@ public:
 	void createGraph();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();
+	void PathBranchBound();
 };
 
 

@@ -14,7 +14,7 @@ Cidade::Cidade(string n, int c, int t){
 }
 
 string Cidade::getNome(){
-	return this->nome;
+	return nome;
 }
 
 int Cidade::getClassificacao(){
@@ -25,7 +25,7 @@ int Cidade::getTempo(){
 	return tempo;
 }
 
-list<int>& Cidade::getTemposViagem(){
+vector<int>& Cidade::getTemposViagem(){
 	return tempos_viagem;
 }
 
@@ -41,5 +41,9 @@ bool Cidade::operator == (Cidade c){
 	if(nome == c.getNome())
 		return true;
 	return false;
+}
+
+void Cidade::ordenarVector(){
+	reverse(tempos_viagem.begin(), tempos_viagem.end());
 }
 
