@@ -56,9 +56,6 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 	}
 
 
-	//encontrar o maximo das classificações
-	//TODO: MOSTRAR AO TRINDADE PARA CONFIRMAR
-
 	sort(classificacoes.begin(), classificacoes.end());
 
 	iMax = classificacoes.at(classificacoes.size() -1).first;
@@ -76,6 +73,16 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 		}
 		else  i--;
 	}
+
+
+	cout <<"///////////////////////////////////////////////////////////////////" << endl;
+
+	for(size_t i=0; i<res.size(); ++i){
+		cout << res[i].getNome() << endl;
+	}
+
+	cout <<"///////////////////////////////////////////////////////////////////" << endl;
+
 
 	return res;
 

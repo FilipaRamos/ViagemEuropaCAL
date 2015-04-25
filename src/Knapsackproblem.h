@@ -17,5 +17,6 @@
 #include "Files.h"
 
 vector<Cidade> Knapsackproblemtestar();
+vector<Cidade> Knapsackproblem(Viagem v, Path p);
 
 #endif /* SRC_KNAPSACKPROBLEM_H_ */

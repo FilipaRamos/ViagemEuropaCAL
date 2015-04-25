@@ -20,7 +20,7 @@ int Path::calculaTempo() {
 					+ g.getVertexSet().at(i)->getAdj().at(j).getWeight();
 		}
 	}
-	cout << res << endl;
+
 	return res;
 }
 
@@ -41,38 +41,29 @@ bool Path::verifica(Cidade c, int tempoDisponivel) {
 /*
  * Função na qual vai ser criado o grafo com as cidades
  */
-void Path::createGraph() {
+void Path::createGraph(File f) {
 
-	File f("teste.txt");
-	int tempoDisponivel = f.readFile();
-	vector<Cidade> cidades = f.viagem.getCidades();
+		vector<Cidade> cidades = f.viagem.getCidades();
 
-	for (size_t i = 0; i < cidades.size(); ++i) {
-		g.addVertex(cidades[i]);
-	}
-
-	for (size_t i = 0; i < cidades.size(); ++i) {
-		unsigned int j = 0;
-		while (j < (cidades.size() - (i + 1))) {
-			g.addEdge(cidades[i], cidades[j+1], cidades[i].getTemposViagem()[i]);
-			++j;
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			g.addVertex(cidades[i]);
 		}
-	}
 
-/*
-	/// SÓ PARA TESTAR SE O GRAFO ESTÁ A SER BEM CONSTRUIDO
-	vector<Vertex<Cidade> *> vetor = g.getVertexSet();
-	for(int j = 0; j < vetor.size(); ++j){
-		cout << vetor[j] << endl;
-	}
-*/
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			unsigned int j = 0;
+			while (j < (cidades.size() - (i + 1))) {
+				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
+				++j;
+			}
+		}
+
+
 }
 
 
 void Path::createGraphtestar() {
 
 	File f("teste.txt");
-		int tempoDisponivel = f.readFile();
 		vector<Cidade> cidades = f.viagem.getCidades();
 
 		for(size_t k=0; k<3; k++){
@@ -87,7 +78,7 @@ void Path::createGraphtestar() {
 		for (size_t i = 0; i < cidades.size(); ++i) {
 			unsigned int j = 0;
 			while (j < (cidades.size() - (i + 1))) {
-				g.addEdge(cidades[i], cidades[j+1], cidades[i].getTemposViagem()[i]);
+				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
 				cout << g.getVertexSet().at(i)->getAdj().at(j).getWeight()<< endl;
 				++j;
 			}

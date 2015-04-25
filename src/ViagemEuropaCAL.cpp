@@ -20,16 +20,17 @@ int main(){
 
 	int tempo_total;
 	string nome = "teste.txt";
-	//cout << nome << endl;
+	cout << nome << endl;
 	File file (nome);
 	tempo_total = file.readFile();
-	//cout << tempo_total << endl;
+	cout << tempo_total << endl;
 	Path p;
-	p.createGraphtestar();
-	//Knapsackproblemtestar();
-	DisplayGraph g;
-	g.Display();
-	cin.get();
+	p.createGraph(file);
+	Knapsackproblem(file.viagem, p);
+	cout << "pintou!" << endl;
+	//DisplayGraph g;
+	//g.Display();
+	//cin.get();
 	return 0;
 }
 
