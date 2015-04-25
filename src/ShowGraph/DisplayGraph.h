@@ -8,6 +8,7 @@
 #ifndef SRC_DISPLAYGRAPH_H_
 #define SRC_DISPLAYGRAPH_H_
 
+#include <string>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
