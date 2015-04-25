@@ -30,7 +30,7 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	//ADICIONA OS NOS TODOS
 
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-			gv->addNode(gc.getVertexSet().at(i)->getInfo().getClassificacao());
+		gv->addNode(gc.getVertexSet().at(i)->getInfo().getClassificacao());
 	}
 
 //TENTA ADICIONAR O EDGE
