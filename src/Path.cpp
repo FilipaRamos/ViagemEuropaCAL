@@ -43,19 +43,20 @@ bool Path::verifica(Cidade c, int tempoDisponivel) {
  */
 void Path::createGraph(File f) {
 
-		vector<Cidade> cidades = f.viagem.getCidades();
+	vector<Cidade> cidades = f.viagem.getCidades();
 
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			g.addVertex(cidades[i]);
-		}
+	for (size_t i = 0; i < cidades.size(); ++i) {
+		g.addVertex(cidades[i]);
+	}
 
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			unsigned int j = 0;
-			while (j < (cidades.size() - (i + 1))) {
-				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
-				++j;
-			}
+	for (size_t i = 0; i < cidades.size(); ++i) {
+		unsigned int j = 0;
+		while (j < (cidades.size() - (i + 1))) {
+			g.addEdge(cidades[i], cidades[i + 1],
+					cidades[i].getTemposViagem()[j]);
+			++j;
 		}
+	}
 
 
 }
@@ -90,7 +91,16 @@ void Path::createGraphtestar() {
  * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
  * depois de ser aplicada a resolução do problema da mochila
  */
-void Path::PathBranchBound(){
+void Path::PathBranchBound(File f){
+	vector<Cidade> cidades = f.viagem.getCidades();
+	/*
+	 * cálculo do minimum bound e da matriz adjacente
+	 */
+	int minimum_bound = 0;
+	int matrixA[cidades.size()][cidades.size()];
+	vector<int> reductions;
+
+
 
 }
 
