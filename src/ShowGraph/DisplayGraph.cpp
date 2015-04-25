@@ -1,8 +1,11 @@
 #include "DisplayGraph.h"
+#include <string>
+#include <iostream>
+#include <cstdlib>
 
-using namespace std;
 
-DisplayGraph::DisplayGraph(){}
+DisplayGraph::DisplayGraph(){
+}
 
 void DisplayGraph::Display(Graph<Cidade> gc) {
 
@@ -16,6 +19,7 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	gv->defineVertexColor("BLACK");
 
+	//ADICIONA OS NOS TODOS
 
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		gv->addNode(gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(i));
