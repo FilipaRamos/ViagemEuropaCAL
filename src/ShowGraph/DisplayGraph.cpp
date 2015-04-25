@@ -28,26 +28,20 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	gv->defineVertexColor("BLACK");
 
 	//ADICIONA OS NOS TODOS
-
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		gv->addNode(gc.getVertexSet().at(i)->getInfo().getClassificacao());
+		gv->addNode(i);
 	}
 
 //TENTA ADICIONAR O EDGE
-
+	int id = 0;
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		unsigned int j = 0;
 		int no = i+1;
 		while (j < (gc.getVertexSet().size() - (i + 1))) {
-			cout << "i: " << i << endl;
-			cout << "no inicial " << no << endl;
-			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j],
-					gc.getVertexSet().at(i)->getInfo().getClassificacao(),
-					gc.getVertexSet().at(no)->getInfo().getClassificacao(),
-					EdgeType::UNDIRECTED);
+			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
 			j++;
+			id++;
 			no++;
-			cout << "j: " << j << endl;
 		}
 	}
 
