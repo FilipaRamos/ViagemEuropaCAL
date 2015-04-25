@@ -88,22 +88,6 @@ void Path::createGraphtestar() {
 }
 
 /*
- * Reduz matrizes
- * --> utilizada no Branch and Bound
- */
-void Path::reduzMatriz(int matrix[][]){
-	vector<int> reducoes; // guarda as reduções para mais tarde somá-las e obter o minimum bound
-
-	/*
-	 * Reduzir por linha
-	 */
-	for(int i = 0; i < sizeof(matrix[0]); ++i){
-
-	}
-
-}
-
-/*
  * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
  * depois de ser aplicada a resolução do problema da mochila
  */
@@ -112,7 +96,6 @@ void Path::PathBranchBound(){
 	/*
 	 * cálculo do minimum bound e da matriz adjacente
 	 */
-	int minimum_bound = 0;
 	int matrixA[cidades.size()][cidades.size()];
 
 	/*
@@ -137,22 +120,42 @@ void Path::PathBranchBound(){
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // cria a diagonal
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
 			if(i == j)
-				matrixA[i][j] = -1; // -1 representa o infinito (viagem do nódulo para si próprio)
+				matrixA[i][j] = 0; // 0 representa o infinito (viagem do nódulo para si próprio)
 		}
 	}
 
-	/*
+
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
 			cout << matrixA[i][j] << " ";
 		}
 		cout << endl;
 	}
-*/
+
 
 	/*
 	 * Reduzir a matrix
 	 */
+	vector<int> reducoes; // guarda as reduções para mais tarde somá-las e obter o minimum bound
+
+	/*
+	 * Reduzir por linha
+	 */
+	int minimo = 0;
+	for (unsigned int i = 0; i < cidades.size(); ++i) { // encontrar o mínimo de cada linha
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			if (i != j) {
+				int minimo = matrixA[i][j];
+				if (minimo > matrixA[i + 1][j + 1])
+					minimo = matrixA[i + 1][j + 1];
+			}
+		}
+		reducoes.push_back(minimo);
+	}
+
+	cout << reducoes.size() << endl;
+	for(int i = 0; i < reducoes.size();++i)
+		cout << reducoes[i] << endl;
 
 
 
