@@ -1,5 +1,6 @@
 #include "connection.h"
 
+using namespace std;
 
 void myerror(string msg) {
   printf("%s\n", msg.c_str());

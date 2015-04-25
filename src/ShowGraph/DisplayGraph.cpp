@@ -1,8 +1,8 @@
 #include "DisplayGraph.h"
 
+using namespace std;
 
-DisplayGraph::DisplayGraph(){
-}
+DisplayGraph::DisplayGraph(){}
 
 void DisplayGraph::Display(Graph<Cidade> gc) {
 
