@@ -52,7 +52,7 @@ void Path::createGraph(File f) {
 	for (size_t i = 0; i < cidades.size(); ++i) {
 		unsigned int j = 0;
 		while (j < (cidades.size() - (i + 1))) {
-			g.addEdge(cidades[i], cidades[i + 1],
+			g.addEdge(cidades[i], cidades[i+1],
 					cidades[i].getTemposViagem()[j]);
 			++j;
 		}
