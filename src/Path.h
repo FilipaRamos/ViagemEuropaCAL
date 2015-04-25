@@ -18,9 +18,12 @@ class Path{
 	Graph<Cidade> g;
 public:
 	Path();
-	void createGraph();
+	Graph<Cidade>& getGraph(){return g;};
+	void createGraph(File f);
+	void createGraphtestar();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();
+	void PathBranchBound();
 };
 
 

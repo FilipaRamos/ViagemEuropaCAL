@@ -7,8 +7,7 @@
 
 #include "Path.h"
 
-Path::Path() {
-}
+Path::Path() {}
 
 /*
  * Calcula o tempo de permanencia de todas as cidades que já se encontram no grafo
@@ -21,7 +20,7 @@ int Path::calculaTempo() {
 					+ g.getVertexSet().at(i)->getAdj().at(j).getWeight();
 		}
 	}
-	cout << res << endl;
+
 	return res;
 }
 
@@ -42,27 +41,57 @@ bool Path::verifica(Cidade c, int tempoDisponivel) {
 /*
  * Função na qual vai ser criado o grafo com as cidades
  */
-void Path::createGraph() {
+void Path::createGraph(File f) {
 
-	File f("teste.txt");
-	int tempoDisponivel = f.readFile();
-	vector<Cidade> cidades = f.viagem.getCidades();
-	int class_max = 10;
-	g.addVertex(cidades[0]); // adicionar a cidade de partida
-	int tempo_utilizado = calculaTempo();
+		vector<Cidade> cidades = f.viagem.getCidades();
 
-	while (tempo_utilizado < tempoDisponivel) { // enquanto houver tempo disponível adicionar vértices
-		for (unsigned int i = 1; i <= cidades.size(); ++i) {
-			while (class_max > 0) {
-				for (size_t i = 0; i < cidades.size(); ++i) {
-					if (cidades[i].getClassificacao() == class_max) {
-						g.addVertex(cidades[i]);
-					}
-				}
-				class_max--;
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			g.addVertex(cidades[i]);
+		}
 
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			unsigned int j = 0;
+			while (j < (cidades.size() - (i + 1))) {
+				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
+				++j;
 			}
 		}
-	}
+
+
+}
+
+
+void Path::createGraphtestar() {
+
+	File f("teste.txt");
+		vector<Cidade> cidades = f.viagem.getCidades();
+
+		for(size_t k=0; k<3; k++){
+			cout << cidades[0].getTemposViagem().at(k) <<endl;
+		}
+
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			g.addVertex(cidades[i]);
+			cout << g.getVertexSet()[i]->getInfo().getNome() << endl;
+		}
+
+		for (size_t i = 0; i < cidades.size(); ++i) {
+			unsigned int j = 0;
+			while (j < (cidades.size() - (i + 1))) {
+				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
+
+				cout << g.getVertexSet().at(i)->getAdj().at(j).getWeight()<< endl;
+				++j;
+			}
+		}
+
+}
+
+/*
+ * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
+ * depois de ser aplicada a resolução do problema da mochila
+ */
+void Path::PathBranchBound(){
+
 }
 
