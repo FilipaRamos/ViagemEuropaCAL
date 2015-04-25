@@ -5,13 +5,11 @@
 
 using namespace std;
 
-/*
-=======
+
 
 /*
 	Viagem v = new Viagem();
 
->>>>>>> origin/master
 	int i, j, k, n, min, g[20][20], c[20][20], s, s1[20][1], s2, lb;
 
 	n = v.getCidades().size();
