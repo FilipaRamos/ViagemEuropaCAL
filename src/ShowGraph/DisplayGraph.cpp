@@ -25,10 +25,14 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 		gv->addNode(gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(i));
 
 	}
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		for (size_t j = 0; j < gc.getVertexSet().at(i)->getAdj().size(); ++j) {
-			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i+1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
-			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i+1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j+1], EdgeType::UNDIRECTED);
+
+	for (size_t i = 1; i <= gc.getVertexSet().size(); ++i) {
+		unsigned int j = 0;
+		while (j < gc.getVertexSet().at(i-1)->getInfo().getTemposViagem().size()) {
+			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i-1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
+			//      gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i-1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
+
+			++j;
 		}
 	}
 
