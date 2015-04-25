@@ -43,7 +43,5 @@ bool Cidade::operator == (Cidade c){
 	return false;
 }
 
-void Cidade::ordenarVector(){
-	reverse(tempos_viagem.begin(), tempos_viagem.end());
-}
+
 

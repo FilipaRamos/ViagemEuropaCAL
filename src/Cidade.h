@@ -30,7 +30,7 @@ public:
 	vector<int>& getTemposViagem();
 	void addTempoViagem(int d);
 	bool operator == (Cidade c);
-	void ordenarVector();
+
 };
 
 
