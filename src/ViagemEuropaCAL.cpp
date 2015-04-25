@@ -26,9 +26,6 @@ int main(){
 	cin.get();
 	Knapsackproblem(file.viagem, p);
 	p.PathBranchBound();
-	Knapsackproblem(file.viagem, p);
-	gd.Display(p.getGraph());
-	cin.get();
 	cout << "pintou!" << endl;
 	return 0;
 }
