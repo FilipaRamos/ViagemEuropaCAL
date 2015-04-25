@@ -78,7 +78,11 @@ void Path::createGraphtestar() {
 		for (size_t i = 0; i < cidades.size(); ++i) {
 			unsigned int j = 0;
 			while (j < (cidades.size() - (i + 1))) {
+<<<<<<< HEAD
 				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
+=======
+				g.addEdge(cidades[i], cidades[j+1], cidades[i].getTemposViagem()[j]);
+>>>>>>> origin/master
 				cout << g.getVertexSet().at(i)->getAdj().at(j).getWeight()<< endl;
 				++j;
 			}
