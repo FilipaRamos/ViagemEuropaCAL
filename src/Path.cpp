@@ -7,8 +7,7 @@
 
 #include "Path.h"
 
-Path::Path() {
-}
+Path::Path() {}
 
 /*
  * Calcula o tempo de permanencia de todas as cidades que já se encontram no grafo
@@ -46,19 +45,25 @@ void Path::createGraph() {
 
 	File f("teste.txt");
 	int tempoDisponivel = f.readFile();
+	cout << tempoDisponivel << endl;
 	vector<Cidade> cidades = f.viagem.getCidades();
 	g.addVertex(cidades[0]); // adicionar a cidade de partida
-	cidades[0].ordenarVector();
 	unsigned int j = 0;
 
 	for (size_t i = 1; i <= cidades.size(); ++i) {
-		cidades[i].ordenarVector();
 		g.addVertex(cidades[i]);
 		while (j < (cidades.size() - (i + 1))) {
 			g.addEdge(cidades[i - 1], cidades[i], cidades[i - 1].getTemposViagem()[i - 1]);
 			++j;
 		}
 	}
+/*
+	/// SÓ PARA TESTAR SE O GRAFO ESTÁ A SER BEM CONSTRUIDO
+	vector<Vertex<Cidade> *> vetor = g.getVertexSet();
+	for(int j = 0; j < vetor.size(); ++j){
+		cout << vetor[j] << endl;
+	}
+*/
 }
 
 /*
@@ -66,6 +71,6 @@ void Path::createGraph() {
  * depois de ser aplicada a resolução do problema da mochila
  */
 void Path::PathBranchBound(){
-	// comentario so para testar os commits
+
 }
 
