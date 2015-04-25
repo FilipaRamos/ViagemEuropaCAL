@@ -35,7 +35,7 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 			}
 			else{
 				if(p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo() <= j){
-					int dif_tempos = p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo() - j;
+					int dif_tempos = j - p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo();
 					if( p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + a[i-1][dif_tempos] > a[i-1][j]){
 						a[i][j] = p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + a[i-1][dif_tempos];
 					}
