@@ -173,6 +173,7 @@ vector<Cidade> Knapsackproblemtestar(){
 		else i--;
 	}
 
+
 	cout <<"///////////////////////////////////////////////////////////////////" << endl;
 
 	for(size_t i=0; i<res.size(); ++i){
