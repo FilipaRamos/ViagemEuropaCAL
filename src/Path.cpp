@@ -120,7 +120,7 @@ void Path::PathBranchBound(){
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // cria a diagonal
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
 			if(i == j)
-				matrixA[i][j] = 0; // 0 representa o infinito (viagem do nódulo para si próprio)
+				matrixA[i][j] = -1; // 0 representa o infinito (viagem do nódulo para si próprio)
 		}
 	}
 
@@ -141,20 +141,22 @@ void Path::PathBranchBound(){
 	/*
 	 * Reduzir por linha
 	 */
-	int minimo = 0;
+	int minimo;
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // encontrar o mínimo de cada linha
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			if(i == 0 && i != j)
+				minimo = matrixA[i][j];
 			if (i != j) {
-				int minimo = matrixA[i][j];
-				if (minimo > matrixA[i + 1][j + 1])
-					minimo = matrixA[i + 1][j + 1];
+				if (matrixA[i][j] < minimo){
+					minimo = matrixA[i][j];
+				}
 			}
 		}
 		reducoes.push_back(minimo);
 	}
 
 	cout << reducoes.size() << endl;
-	for(int i = 0; i < reducoes.size();++i)
+	for(unsigned int i = 0; i < reducoes.size();++i)
 		cout << reducoes[i] << endl;
 
 
