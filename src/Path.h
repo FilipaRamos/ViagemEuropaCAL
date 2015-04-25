@@ -23,7 +23,7 @@ public:
 	void createGraphtestar();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();
-	void PathBranchBound(File f);
+	void PathBranchBound();
 };
 
 

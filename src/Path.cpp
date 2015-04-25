@@ -91,8 +91,8 @@ void Path::createGraphtestar() {
  * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
  * depois de ser aplicada a resolução do problema da mochila
  */
-void Path::PathBranchBound(File f){
-	vector<Cidade> cidades = f.viagem.getCidades();
+void Path::PathBranchBound(){
+	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
 	/*
 	 * cálculo do minimum bound e da matriz adjacente
 	 */
@@ -100,6 +100,17 @@ void Path::PathBranchBound(File f){
 	int matrixA[cidades.size()][cidades.size()];
 	vector<int> reductions;
 
+	// criar a matriz adjacente não reduzida
+	for(int i = 0; i < cidades.size(); ++i){
+		for(int j = 0; j < cidades.size(); ++j){
+			if(i == j){
+				matrixA[i][j] = -1; // -1 simboliza o infinito (viagem do nódulo para si próprio)
+			}
+			else{
+				matrixA[i][j] = g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
+			}
+		}
+	}
 
 
 }
