@@ -43,19 +43,20 @@ bool Path::verifica(Cidade c, int tempoDisponivel) {
  */
 void Path::createGraph(File f) {
 
-		vector<Cidade> cidades = f.viagem.getCidades();
+	vector<Cidade> cidades = f.viagem.getCidades();
 
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			g.addVertex(cidades[i]);
-		}
+	for (size_t i = 0; i < cidades.size(); ++i) {
+		g.addVertex(cidades[i]);
+	}
 
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			unsigned int j = 0;
-			while (j < (cidades.size() - (i + 1))) {
-				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
-				++j;
-			}
+	for (size_t i = 0; i < cidades.size(); ++i) {
+		unsigned int j = 0;
+		while (j < (cidades.size() - (i + 1))) {
+			g.addEdge(cidades[i], cidades[i + 1],
+					cidades[i].getTemposViagem()[j]);
+			++j;
 		}
+	}
 
 
 }
@@ -79,7 +80,6 @@ void Path::createGraphtestar() {
 			unsigned int j = 0;
 			while (j < (cidades.size() - (i + 1))) {
 				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
-
 				cout << g.getVertexSet().at(i)->getAdj().at(j).getWeight()<< endl;
 				++j;
 			}
@@ -92,6 +92,26 @@ void Path::createGraphtestar() {
  * depois de ser aplicada a resolução do problema da mochila
  */
 void Path::PathBranchBound(){
+	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
+	/*
+	 * cálculo do minimum bound e da matriz adjacente
+	 */
+	int minimum_bound = 0;
+	int matrixA[cidades.size()][cidades.size()];
+	vector<int> reductions;
+
+	// criar a matriz adjacente não reduzida
+	for(int i = 0; i < cidades.size(); ++i){
+		for(int j = 0; j < cidades.size(); ++j){
+			if(i == j){
+				matrixA[i][j] = -1; // -1 simboliza o infinito (viagem do nódulo para si próprio)
+			}
+			else{
+				matrixA[i][j] = g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
+			}
+		}
+	}
+
 
 }
 
