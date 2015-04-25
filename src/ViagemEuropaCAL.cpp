@@ -19,17 +19,13 @@ int main(){
 	File file (nome);
 	tempo_total = file.readFile();
 	cout << tempo_total << endl;
-	Graph<Cidade> g;
-	DisplayGraph gd;
-	gd.Display(g);
-	cin.get();
 	Path p;
+	DisplayGraph gd;
 	p.createGraph(file);
+	gd.Display(p.getGraph());
+	cin.get();
 	Knapsackproblem(file.viagem, p);
 	cout << "pintou!" << endl;
-	//DisplayGraph g;
-	//g.Display();
-	//cin.get();
 	return 0;
 }
 

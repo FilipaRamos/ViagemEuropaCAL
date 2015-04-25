@@ -21,6 +21,7 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 		gv->addNode(gc.getVertexSet().at(i)->getInfo().getClassificacao());
 			for (size_t j = 0; j < gc.getVertexSet().at(i)->getAdj().size(); ++j) {
 				gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i+1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
+				gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i+1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j+1], EdgeType::UNDIRECTED);
 
 			}
 		}
