@@ -20,6 +20,7 @@ public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};
 	void createGraph();
+	void createGraphtestar();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();
 	void PathBranchBound();

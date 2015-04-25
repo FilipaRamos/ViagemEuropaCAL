@@ -24,8 +24,9 @@ int main(){
 	File file (nome);
 	tempo_total = file.readFile();
 	//cout << tempo_total << endl;
-
-	Knapsackproblemtestar();
+	Path p;
+	p.createGraphtestar();
+	//Knapsackproblemtestar();
 	DisplayGraph g;
 	g.Display();
 	cin.get();
