@@ -9,8 +9,9 @@
 #include <iostream>
 #include "Files.h"
 #include "Cidade.h"
+#include "Graph.h"
 #include "Viagem.h"
-#include "DisplayGraph.h"
+#include "ShowGraph/DisplayGraph.h"
 
 using namespace std;
 int main(){
@@ -20,8 +21,9 @@ int main(){
 	File file (nome);
 	tempo_total = file.readFile();
 	cout << tempo_total << endl;
-	DisplayGraph g;
-	g.Display();
+	Graph<Cidade> g;
+	DisplayGraph gd;
+	gd.Display(g);
 	cin.get();
 	return 0;
 }

@@ -60,6 +60,7 @@ public:
 	double getWeight(){return weight;};
 	friend class Graph<T>;
 	friend class Vertex<T>;
+	Vertex<T> * getDest() { return dest;};
 
 };
 

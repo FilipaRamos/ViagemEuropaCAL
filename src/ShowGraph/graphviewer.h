@@ -94,6 +94,7 @@ class GraphViewer {
    */
   bool addEdge(int id, int v1, int v2, int edgeType);
 
+
   /**
    * Remove um nó da representação do grafo e todas as arestas ligadas a este.
    * @param id Identificador único do nó a a remover.

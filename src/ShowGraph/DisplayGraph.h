@@ -12,12 +12,15 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "../Cidade.h"
+#include "../Graph.h"
 #include "graphviewer.h"
+
 
 class DisplayGraph {
 public:
 	DisplayGraph();
-	void Display();
+	void Display(Graph<Cidade> gc);
 };
 
 #endif /* SRC_DISPLAYGRAPH_H_ */
