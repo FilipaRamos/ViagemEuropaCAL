@@ -47,15 +47,15 @@ void Path::createGraph() {
 	int tempoDisponivel = f.readFile();
 	vector<Cidade> cidades = f.viagem.getCidades();
 	g.addVertex(cidades[0]); // adicionar a cidade de partida
-	unsigned int j = 0;
 
 	for (size_t i = 1; i <= cidades.size(); ++i) {
 		g.addVertex(cidades[i]);
 	}
 
 	for (size_t i = 0; i < cidades.size(); ++i) {
+		unsigned int j = 0;
 		while (j < (cidades.size() - (i + 1))) {
-			g.addEdge(cidades[i - 1], cidades[i], cidades[i - 1].getTemposViagem()[i - 1]);
+			g.addEdge(cidades[i], cidades[j+1], cidades[i].getTemposViagem()[i]);
 			++j;
 		}
 	}
