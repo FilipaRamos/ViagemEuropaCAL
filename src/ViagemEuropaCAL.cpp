@@ -10,6 +10,7 @@
 #include "Files.h"
 #include "Cidade.h"
 #include "Viagem.h"
+#include "Path.h"
 #include "DisplayGraph.h"
 #include "Knapsackproblem.h"
 
