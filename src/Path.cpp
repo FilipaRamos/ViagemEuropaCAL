@@ -46,9 +46,8 @@ void Path::createGraph() {
 	File f("teste.txt");
 	int tempoDisponivel = f.readFile();
 	vector<Cidade> cidades = f.viagem.getCidades();
-	g.addVertex(cidades[0]); // adicionar a cidade de partida
 
-	for (size_t i = 1; i <= cidades.size(); ++i) {
+	for (size_t i = 0; i < cidades.size(); ++i) {
 		g.addVertex(cidades[i]);
 	}
 
