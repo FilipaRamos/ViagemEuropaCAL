@@ -22,9 +22,9 @@ int main(){
 	Path p;
 	DisplayGraph gd;
 	p.createGraph(file);
+	Knapsackproblem(file.viagem, p);
 	gd.Display(p.getGraph());
 	cin.get();
-	Knapsackproblem(file.viagem, p);
 	cout << "pintou!" << endl;
 	return 0;
 }
