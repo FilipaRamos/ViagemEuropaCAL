@@ -16,6 +16,7 @@
 
 class Path{
 	Graph<Cidade> g;
+	int minimum_bound;
 public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};
