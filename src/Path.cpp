@@ -222,6 +222,9 @@ void Path::PathBranchBound(){
 			matrixR[i][j] = matrixA[i][j];
 		}
 	}
+
+	int matrixMenor[cidades.size()][cidades.size()];
+
 	/*
 	 * Criação da matriz S
 	 */
@@ -232,6 +235,11 @@ void Path::PathBranchBound(){
 	 */
 	for (unsigned int linha = 0; linha < cidades.size(); ++linha) {
 		unsigned int coluna = 1;
+		for (unsigned int i = 0; i < cidades.size(); ++i) { // a matriz S torna-se a matriz R
+			for (unsigned int j = 0; j < cidades.size(); ++j) {
+				matrixR[i][j] = matrixS[i][j];
+			}
+		}
 		while(coluna <= (cidades.size()-(linha+1))) {
 			/*
 			 * Início do caminho
