@@ -238,7 +238,94 @@ void Path::PathBranchBound(){
 		}
 	}
 
-	cout << "::::::::::::::::" << endl;
+	/*
+	 * Início do caminho
+	 */
+	for(unsigned int i = 0; i < 1; ++i){ // anular o caminho realizado
+		for(unsigned int j = 0; j < cidades.size(); ++j){
+			matrixR[i][j] = -1;
+		}
+		matrixR[i+1][i] = -1;
+		for(unsigned int k = 0; k < cidades.size(); ++k){
+			matrixR[k][i+1] = -1;
+		}
+	}
+
+	cout << "::::::::MATRIZ R INFINITIZADA::::::::" << endl;
+
+	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			cout << matrixR[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	vector<int> rL;
+	vector<int> rC;
+	/*
+	 * Reduzir por linha
+	 */
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			if (matrixR[i][j] != -1){
+				minimo_linha = matrixR[i][j];
+				if (matrixR[i][j] < minimo_linha) {
+					minimo_linha = matrixR[i][j]; // encontrar o mínimo de cada linha
+				}
+			}
+		}
+		rL.push_back(minimo_linha);
+	}
+	cout << "minimo: " << minimo_linha << endl;
+
+	/*
+	 * Subtrair a redução das linhas
+	 */
+	int kl = 0;
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			if (matrixR[i][j] != -1) {
+				int n = rL[kl];
+				if (rL[kl] != 0) {
+					matrixR[i][j] = matrixR[i][j] - n; // subtrair a redução
+					cout << "reducao " << n << endl;
+				}
+			}
+		}
+		kl++;
+	}
+	/*
+	 * Reduzir por coluna
+	 */
+	for (unsigned int j = 0; j < cidades.size(); ++j) {
+		for (unsigned int i = 0; i < cidades.size(); ++i) {
+			if (i == 1 && j == 0) {
+				minimo_coluna = matrixR[i][j];
+			}
+			if (i != j) {
+				if (matrixA[i][j] < minimo_coluna) {
+					minimo_coluna = matrixR[i][j]; // encontrar o mínimo de cada coluna
+				}
+			}
+		}
+		rC.push_back(minimo_coluna);
+	}
+
+	/*
+	 * Subtrair a redução por coluna
+	 */
+	int cl = 0;
+	for (unsigned int j = 0; j < cidades.size(); ++j) {
+		for (unsigned int i = 0; i < cidades.size(); ++i) {
+			if (i != j) {
+				int c = rC[cl];
+				matrixR[i][j] = matrixR[i][j] - c; // subtrair a redução
+			}
+		}
+		cl++;
+	}
+
+	cout << "::::::::MATRIZ R REDUZIDA::::::::" << endl;
 
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -248,19 +335,7 @@ void Path::PathBranchBound(){
 	}
 
 
-	/*
-	 * Início do caminho
-	 */
-	for(unsigned int i = 0; i < 1; ++i){ // anular o caminho realizado
-		for(unsigned int j = 0; j < cidades.size(); ++j){
-			matrixA[i][j] = -1;
-		}
-	}
 
-	for(unsigned int j = 0; j < 1; ++j){
-
-
-	}
 
 }
 
