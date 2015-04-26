@@ -246,6 +246,7 @@ void Path::PathBranchBound(){
 
 			vector<int> rL;
 			vector<int> rC;
+
 			/*
 			 * Reduzir por linha
 			 */
