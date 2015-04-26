@@ -128,13 +128,6 @@ void Path::PathBranchBound(){
 		}
 	}
 
-	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			cout << matrixA[i][j] << " ";
-		}
-		cout << endl;
-	}
-
 	/*
 	 * Reduzir a matrix
 	 */
@@ -230,29 +223,36 @@ void Path::PathBranchBound(){
 	}
 
 	/*
-	 * Início do caminho
-	 */
-	for(unsigned int i = 0; i < 1; ++i){ // anular o caminho realizado
-		for(unsigned int j = 0; j < cidades.size(); ++j){
-			matrixR[i][j] = -1;
-		}
-		matrixR[i+1][i] = -1;
-		for(unsigned int k = 0; k < cidades.size(); ++k){
-			matrixR[k][i+1] = -1;
-		}
-	}
-
-	/*
 	 * Cálculo das matrizes R e S e cálculo do caminho
 	 */
-	int coluna = 0;
+	unsigned int coluna = 1;
 	for (unsigned int linha = 0; linha < cidades.size(); ++linha) {
-		while(coluna < (cidades.size()-(linha+1))) {
+		while(coluna <= (cidades.size()-(linha+1))) {
+			/*
+			 * Início do caminho
+			 */
+			for (unsigned int j = 0; j < cidades.size(); ++j) {
+				matrixR[linha][j] = -1;
+			}
+			matrixR[coluna][linha] = -1;
+			for (unsigned int k = 0; k < cidades.size(); ++k) {
+				matrixR[k][coluna] = -1;
+			}
+
+			for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
+				for (unsigned int j = 0; j < cidades.size(); ++j) {
+					cout << matrixA[i][j] << " ";
+				}
+				cout << endl;
+			}
+			cout << "//////////////////////" << endl;
+
+			/*
 			vector<int> rL;
 			vector<int> rC;
 			/*
 			 * Reduzir por linha
-			 */
+			 *//*
 			minimo_linha = 50;
 			bool minimoL = false;
 			for (unsigned int i = 0; i < cidades.size(); ++i) {
@@ -272,7 +272,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Subtrair a redução das linhas
-			 */
+			 *//*
 			int kl = 0;
 			for (unsigned int i = 0; i < cidades.size(); ++i) {
 				for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -287,7 +287,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Reduzir por coluna
-			 */
+			 *//*
 			minimo_coluna = 50;
 			bool minimoC = false;
 			for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -307,7 +307,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Subtrair a redução por coluna
-			 */
+			 *//*
 			int cl = 0;
 			for (unsigned int j = 0; j < cidades.size(); ++j) {
 				for (unsigned int i = 0; i < cidades.size(); ++i) {
@@ -322,7 +322,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 *Atualização do minimum_bound
-			 */
+			 *//*
 			for (unsigned int i = 0; i < rL.size(); ++i) {
 				minimum_bound += rL[i];
 			}
@@ -333,7 +333,9 @@ void Path::PathBranchBound(){
 
 			minimum_bound += matrixA[0][1];
 
-			cout << "#minimum_bound --> " << minimum_bound << endl;
+			cout << "#minimum_bound --> " << minimum_bound << endl;*/
+
+			coluna++;
 		}
 	}
 
