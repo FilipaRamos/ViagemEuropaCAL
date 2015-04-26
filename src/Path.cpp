@@ -334,6 +334,8 @@ void Path::PathBranchBound(){
 		minimum_bound += rC[j];
 	}
 
+	minimum_bound += matrixA[0][1];
+
 	cout << "#minimum_bound --> " << minimum_bound << endl;
 
 
