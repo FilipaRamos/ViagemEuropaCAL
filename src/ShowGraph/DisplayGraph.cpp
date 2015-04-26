@@ -17,10 +17,10 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	gv->defineEdgeColor("BLUE");
 
 	gv->defineVertexColor("BLACK");
-
 	//ADICIONA OS NOS TODOS
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		gv->addNode(i);
+
 		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
 	}
 
@@ -30,9 +30,10 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 		unsigned int j = 0;
 		int no = i+1;
 		while (j < (gc.getVertexSet().size() - (i + 1))) {
-			stringstream ss;
-			ss << gc.getVertexSet().at(j)->getInfo().getTemposViagem().at(i);
 			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
+			int  number = gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(j);
+			ostringstream ss;
+			ss << number;
 			gv->setEdgeLabel(id, ss.str());
 			j++;
 			id++;
