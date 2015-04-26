@@ -21,7 +21,7 @@ int main(){
 	tempo_total = file.readFile();
 	cout << tempo_total << endl;
 	Path p;
-	DisplayGraph gd;
+	//DisplayGraph gd;
 	p.createGraph(file);
 	gd.Display(p.getGraph());
 	cin.get();

@@ -20,7 +20,7 @@ class Path{
 	Graph<Cidade> g;
 	int minimum_bound;
 	vector<int> minimum_path; // guarda a sequência do caminho mais curto
-	vector<int> minimum_matrix; // guarda as matrizes reduzidas
+	int minimum_matrix[50]; // guarda as matrizes reduzidas
 	vector<int> minimum_cost; // guarda o custo do caminho
 public:
 	Path();
