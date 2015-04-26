@@ -19,12 +19,10 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	gv->defineVertexColor("BLACK");
 
-<<<<<<< HEAD
-=======
 	//ADICIONA OS NOS TODOS
->>>>>>> origin/master
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		gv->addNode(i);
+		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
 	}
 
 //TENTA ADICIONAR O EDGE
@@ -34,6 +32,7 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 		int no = i+1;
 		while (j < (gc.getVertexSet().size() - (i + 1))) {
 			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
+			gv->setEdgeLabel(id, "Isto e uma aresta");
 			j++;
 			id++;
 			no++;
