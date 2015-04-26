@@ -19,8 +19,6 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	gv->defineVertexColor("BLACK");
 
-	//ADICIONA OS NOS TODOS
-
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		while (i < gc.getVertexSet().at(i)->getInfo().getTemposViagem().size()) {
 		gv->addNode(gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(i));
