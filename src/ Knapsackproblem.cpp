@@ -203,6 +203,96 @@ vector<Cidade> Knapsackproblemtestar(int tempoMax){
 }
 
 
-void FWShortestPath(){
+int posCidade(Cidade c, Path p){
+        for(size_t i=0; i<p.getGraph().getVertexSet().size(); ++i){
+                if(p.getGraph().getVertexSet().at(i)->getInfo().getNome() == c.getNome()){
+                        return i;
+                }
+        }
+}
+
+int tempoNasCidades(vector<Cidade> cidadesAusar){
+        int res = 0;
+        for(int i =0; i<cidadesAusar.size(); ++i){
+                res += cidadesAusar.at(i).getTempo();
+        }
+        return res;
+}
+
+bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
+
+        int tempos =0;
+        int melhorTempo=0;
+
+        vector<int> melhorsequencia;
+        vector<int> inteiroscidades;
+
+        p.getGraph().floydWarshallShortestPath();
+
+        for(size_t i=0; i<cidadesAusar.size(); ++i){
+                inteiroscidades.push_back(i);
+        }
+
+        tempos += tempoNasCidades(cidadesAusar);
+
+        for(size_t i=1; i< inteiroscidades.size(); ++i){
+                //while(std::next_permutation(inteiroscidades.begin(), inteiroscidades.end())){
+
+                        tempos += p.getGraph().getW()[posCidade(cidadesAusar.at(i),p)][posCidade(cidadesAusar.at(i-1),p)];
+
+
+                        if(tempos > melhorTempo){
+                                cout << tempos << " " <<  melhorTempo << endl;
+                                cout << "Passou no maior" << endl;
+                                melhorsequencia = inteiroscidades;
+                                melhorTempo = tempos;
+                        }
+
+                        else{
+
+                                if(tempos < melhorTempo){
+                                        cout << "NAAAAAAAAAAAAAAAOOOOOOOOOOO" << endl;
+                                        tempos = 0;
+                                        tempos += tempoNasCidades(cidadesAusar);
+                                }
+                        }
+
+
+        //      }
+
+                cout << melhorTempo << endl;
+
+                cout << tempos << endl;
+
+                return  (melhorTempo + p.getGraph().getW()[posCidade(cidadesAusar.at(0),p)][posCidade(cidadesAusar.at(cidadesAusar.size()-1),p)]) <= tempoMax;
+        }
+}
+
+// VER O QUE CONTEM A MATRIX W
+
+/*
+        for(size_t i=0; i< p.getGraph().getVertexSet().size(); ++i){
+                for(size_t j=0; j<p.getGraph().getVertexSet().size(); ++j){
+
+                        cout <<  p.getGraph().getW()[i][j] << " ";
+
+                }
+
+                cout << endl;
+        }
+ */
+
+
+void DisplayGraphFW(Path p, vector<Cidade> cidadesAusar){
+
+        p.getGraph().floydWarshallShortestPath();
+
+        for(size_t i=1; i< cidadesAusar.size(); ++i){
+                cout << "entrou" <<endl;
+                for(size_t j=0; j < (p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i))).size(); ++j){
+                        cout << p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i)).at(j).getNome() << " -> " ;
+                }
+                cout << (p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i))).size();
+        }
 
 }
