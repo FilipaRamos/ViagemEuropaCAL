@@ -1,5 +1,8 @@
 
 #include <iostream>
+#include <unistd.h>
+#include <conio.h>
+#include <windows.h>
 #include "Files.h"
 #include "Cidade.h"
 #include "Graph.h"

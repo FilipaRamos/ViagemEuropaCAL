@@ -204,15 +204,6 @@ void Path::PathBranchBound(){
 		l++;
 	}
 
-	cout << "::::::::::::::::" << endl;
-
-	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			cout << matrixA[i][j] << " ";
-		}
-		cout << endl;
-	}
-
 	/*
 	 *Cálculo do minimum_bound
 	 */
