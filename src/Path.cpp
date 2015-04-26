@@ -198,7 +198,7 @@ void Path::PathBranchBound(){
 	}
 
 	/*
-	 *Cálculo do minimum_bound
+	 *Cálculo do minimum_bound inicial
 	 */
 	for (unsigned int i = 0; i < reducoes_linha.size(); ++i) {
 		minimum_bound += reducoes_linha[i];
@@ -213,7 +213,6 @@ void Path::PathBranchBound(){
 	/*
 	 * Criação da matriz R
 	 */
-
 	int matrixR[cidades.size()][cidades.size()];
 
 	for (unsigned int i = 0; i < cidades.size(); ++i) {
@@ -221,8 +220,16 @@ void Path::PathBranchBound(){
 			matrixR[i][j] = matrixA[i][j];
 		}
 	}
-
+	/*
+	 * Criação da matriz S
+	 */
 	int matrixS[cidades.size()][cidades.size()];
+
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			matrixS[i][j] = matrixR[i][j];
+		}
+	}
 
 	/*
 	 * Cálculo das matrizes R e S e cálculo do caminho
@@ -234,16 +241,16 @@ void Path::PathBranchBound(){
 			 * Início do caminho
 			 */
 			for (unsigned int j = 0; j < cidades.size(); ++j) {
-				matrixR[linha][j] = -1;
+				matrixS[linha][j] = -1;
 			}
-			matrixR[coluna][linha] = -1;
+			matrixS[coluna][linha] = -1;
 			for (unsigned int k = 0; k < cidades.size(); ++k) {
-				matrixR[k][coluna] = -1;
+				matrixS[k][coluna] = -1;
 			}
 			cout << "( " << linha << " --> " << coluna << ")" << endl;
 			for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
 				for (unsigned int j = 0; j < cidades.size(); ++j) {
-					cout << matrixR[i][j] << " ";
+					cout << matrixS[i][j] << " ";
 				}
 				cout << endl;
 			}
@@ -339,6 +346,10 @@ void Path::PathBranchBound(){
 			cout << "#minimum_bound --> " << minimum_bound << endl;
 
 			coluna++;
+		}
+
+		for(unsigned int i = 0; i < minimum_cost.size(); ++i){
+			cout << "custo em dias: " << minimum_cost[i] << endl;
 		}
 	}
 
