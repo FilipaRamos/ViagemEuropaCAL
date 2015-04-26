@@ -19,19 +19,24 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	gv->defineVertexColor("BLACK");
 
+<<<<<<< HEAD
+=======
+	//ADICIONA OS NOS TODOS
+>>>>>>> origin/master
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		while (i < gc.getVertexSet().at(i)->getInfo().getTemposViagem().size()) {
-		gv->addNode(gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(i));
-		}
+		gv->addNode(i);
 	}
 
-	for (size_t i = 1; i <= gc.getVertexSet().size(); ++i) {
+//TENTA ADICIONAR O EDGE
+	int id = 0;
+	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		unsigned int j = 0;
-		while (j < gc.getVertexSet().at(i)->getInfo().getTemposViagem().size()) {
-			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i-1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
-			gv->addEdge(gc.getVertexSet().at(i)->getInfo().getClassificacao(), gc.getVertexSet().at(i-1)->getInfo().getClassificacao(), gc.getVertexSet().at(i)->getInfo().getTemposViagem()[j], EdgeType::UNDIRECTED);
-
-			++j;
+		int no = i+1;
+		while (j < (gc.getVertexSet().size() - (i + 1))) {
+			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
+			j++;
+			id++;
+			no++;
 		}
 	}
 

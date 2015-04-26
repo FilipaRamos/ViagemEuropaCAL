@@ -52,7 +52,7 @@ void Path::createGraph(File f) {
 	for (size_t i = 0; i < cidades.size(); ++i) {
 		unsigned int j = 0;
 		while (j < (cidades.size() - (i + 1))) {
-			g.addEdge(cidades[i], cidades[i + 1],
+			g.addEdge(cidades[i], cidades[i+1],
 					cidades[i].getTemposViagem()[j]);
 			++j;
 		}
@@ -136,28 +136,71 @@ void Path::PathBranchBound(){
 	/*
 	 * Reduzir a matrix
 	 */
-	vector<int> reducoes; // guarda as reduções para mais tarde somá-las e obter o minimum bound
+	vector<int> reducoes_linha; // guarda as reduções de linha para mais tarde somá-las e obter o minimum bound
+	vector<int> reducoes_coluna; // guarda as reduções de coluna para mais tarde somá-las e obter o minimum bound
 
 	/*
 	 * Reduzir por linha
 	 */
-	int minimo;
-	for (unsigned int i = 0; i < cidades.size(); ++i) { // encontrar o mínimo de cada linha
+	int minimo_linha;
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if(i == 0 && i != j)
-				minimo = matrixA[i][j];
+			if(i == 0 && j == 1)
+				minimo_linha = matrixA[i][j];
 			if (i != j) {
-				if (matrixA[i][j] < minimo){
-					minimo = matrixA[i][j];
+				if (matrixA[i][j] < minimo_linha){
+					minimo_linha = matrixA[i][j]; // encontrar o mínimo de cada linha
 				}
 			}
 		}
-		reducoes.push_back(minimo);
+		reducoes_linha.push_back(minimo_linha);
 	}
 
-	cout << reducoes.size() << endl;
-	for(unsigned int i = 0; i < reducoes.size();++i)
-		cout << reducoes[i] << endl;
+	/*
+	 * Subtrair a redução das linhas
+	 */
+	int k = 0;
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			if (i != j) {
+				int n = reducoes_linha[k];
+				matrixA[i][j] = matrixA[i][j] - n; // subtrair a redução
+			}
+		}
+		k++;
+	}
+
+	/*
+	 * Reduzir por coluna
+	 */
+	int minimo_coluna;
+	for (unsigned int j = 0; j < cidades.size(); ++j) {
+		for (unsigned int i = 0; i < cidades.size(); ++i) {
+			if (i == 1 && j == 0){
+				minimo_coluna = matrixA[i][j];
+			}
+			if (i != j) {
+				if (matrixA[i][j] < minimo_coluna) {
+					minimo_coluna = matrixA[i][j]; // encontrar o mínimo de cada coluna
+				}
+			}
+		}
+		reducoes_coluna.push_back(minimo_coluna);
+	}
+
+	/*
+	 * Subtrair a redução por coluna
+	 */
+	int l = 0;
+	for (unsigned int j = 0; j < cidades.size(); ++j) {
+		for (unsigned int i = 0; i < cidades.size(); ++i) {
+			if (i != j) {
+				int c = reducoes_coluna[l];
+				matrixA[i][j] = matrixA[i][j] - c; // subtrair a redução
+			}
+		}
+		l++;
+	}
 
 
 
