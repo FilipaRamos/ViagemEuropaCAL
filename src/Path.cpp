@@ -222,11 +222,13 @@ void Path::PathBranchBound(){
 		}
 	}
 
+	int matrixS[cidades.size()][cidades.size()];
+
 	/*
 	 * Cálculo das matrizes R e S e cálculo do caminho
 	 */
-	unsigned int coluna = 1;
 	for (unsigned int linha = 0; linha < cidades.size(); ++linha) {
+		unsigned int coluna = 1;
 		while(coluna <= (cidades.size()-(linha+1))) {
 			/*
 			 * Início do caminho
@@ -238,21 +240,20 @@ void Path::PathBranchBound(){
 			for (unsigned int k = 0; k < cidades.size(); ++k) {
 				matrixR[k][coluna] = -1;
 			}
-
+			cout << "( " << linha << " --> " << coluna << ")" << endl;
 			for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
 				for (unsigned int j = 0; j < cidades.size(); ++j) {
-					cout << matrixA[i][j] << " ";
+					cout << matrixR[i][j] << " ";
 				}
 				cout << endl;
 			}
 			cout << "//////////////////////" << endl;
 
-			/*
 			vector<int> rL;
 			vector<int> rC;
 			/*
 			 * Reduzir por linha
-			 *//*
+			 */
 			minimo_linha = 50;
 			bool minimoL = false;
 			for (unsigned int i = 0; i < cidades.size(); ++i) {
@@ -272,7 +273,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Subtrair a redução das linhas
-			 *//*
+			 */
 			int kl = 0;
 			for (unsigned int i = 0; i < cidades.size(); ++i) {
 				for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -287,7 +288,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Reduzir por coluna
-			 *//*
+			 */
 			minimo_coluna = 50;
 			bool minimoC = false;
 			for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -307,7 +308,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 * Subtrair a redução por coluna
-			 *//*
+			 */
 			int cl = 0;
 			for (unsigned int j = 0; j < cidades.size(); ++j) {
 				for (unsigned int i = 0; i < cidades.size(); ++i) {
@@ -322,7 +323,7 @@ void Path::PathBranchBound(){
 			}
 			/*
 			 *Atualização do minimum_bound
-			 *//*
+			 */
 			for (unsigned int i = 0; i < rL.size(); ++i) {
 				minimum_bound += rL[i];
 			}
@@ -331,9 +332,11 @@ void Path::PathBranchBound(){
 				minimum_bound += rC[j];
 			}
 
-			minimum_bound += matrixA[0][1];
+			minimum_bound += matrixA[linha][coluna];
 
-			cout << "#minimum_bound --> " << minimum_bound << endl;*/
+			minimum_cost.push_back(minimum_bound);
+
+			cout << "#minimum_bound --> " << minimum_bound << endl;
 
 			coluna++;
 		}

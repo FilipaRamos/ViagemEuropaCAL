@@ -27,11 +27,10 @@ int main(){
 	p.createGraph(file);
 	//gd.Display(p.getGraph());
 	//cin.get();
-	Knapsackproblem(file.viagem, p, tempo_total);
+	//Knapsackproblem(file.viagem, p, tempo_total);
 	//Knapsackproblemtestar(tempo_total);
 
-	//p.PathBranchBound();
-	cout << "pintou!" << endl;
+	p.PathBranchBound();
 	return 0;
 }
 
