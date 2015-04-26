@@ -7,8 +7,6 @@
 #include "Cidade.h"
 #include "Graph.h"
 #include "Viagem.h"
-
-#include "ShowGraph/DisplayGraph.h"
 #include "Path.h"
 #include "ShowGraph/DisplayGraph.h"
 #include "Knapsackproblem.h"
