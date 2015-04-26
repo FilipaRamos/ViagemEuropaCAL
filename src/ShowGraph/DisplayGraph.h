@@ -22,7 +22,6 @@ class DisplayGraph {
 public:
 	DisplayGraph();
 	void Display(Graph<Cidade> gc);
-	int StringInt(string st);
 };
 
 #endif /* SRC_DISPLAYGRAPH_H_ */

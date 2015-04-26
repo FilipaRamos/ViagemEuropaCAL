@@ -7,14 +7,6 @@
 DisplayGraph::DisplayGraph(){
 }
 
-int DisplayGraph::StringInt(string st) {
-
-	const char *str1 = st.c_str();
-
-	return atoi(str1);
-
-}
-
 void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	GraphViewer *gv = new GraphViewer(600, 600, true);
