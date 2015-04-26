@@ -7,7 +7,10 @@
 
 #include "Path.h"
 
-Path::Path() {}
+Path::Path() {
+	n = g.getVertexSet().size();
+	minimum_bound = 0;
+}
 
 /*
  * Calcula o tempo de permanencia de todas as cidades que já se encontram no grafo
@@ -101,29 +104,29 @@ void Path::PathBranchBound(){
 	/*
 	 * criar a matriz adjacente não reduzida
 	 */
-	for(unsigned int i = 0; i < (cidades.size()-1); ++i){ // cria a matriz triangular superior
+	for (unsigned int i = 0; i < (cidades.size() - 1); ++i) { // cria a matriz triangular superior
 		unsigned int j = 0;
 		int posicao = i + 1;
-		while(j < (cidades.size()-(i+1))){
-			matrixA[i][posicao] = g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
+		while (j < (cidades.size() - (i + 1))) {
+			matrixA[i][posicao] =
+					g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
 			posicao++;
 			j++;
 		}
 	}
 
-	for(unsigned int k = 1; k < cidades.size(); ++k){ // cria a matriz triangular inferior
-		for(unsigned int l = 0; l < k; ++l){
+	for (unsigned int k = 1; k < cidades.size(); ++k) { // cria a matriz triangular inferior
+		for (unsigned int l = 0; l < k; ++l) {
 			matrixA[k][l] = matrixA[l][k];
 		}
 	}
 
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // cria a diagonal
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if(i == j)
+			if (i == j)
 				matrixA[i][j] = -1; // 0 representa o infinito (viagem do nódulo para si próprio)
 		}
 	}
-
 
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
@@ -131,7 +134,6 @@ void Path::PathBranchBound(){
 		}
 		cout << endl;
 	}
-
 
 	/*
 	 * Reduzir a matrix
@@ -145,10 +147,10 @@ void Path::PathBranchBound(){
 	int minimo_linha;
 	for (unsigned int i = 0; i < cidades.size(); ++i) {
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if(i == 0 && j == 1)
+			if (i == 0 && j == 1)
 				minimo_linha = matrixA[i][j];
 			if (i != j) {
-				if (matrixA[i][j] < minimo_linha){
+				if (matrixA[i][j] < minimo_linha) {
 					minimo_linha = matrixA[i][j]; // encontrar o mínimo de cada linha
 				}
 			}
@@ -176,7 +178,7 @@ void Path::PathBranchBound(){
 	int minimo_coluna;
 	for (unsigned int j = 0; j < cidades.size(); ++j) {
 		for (unsigned int i = 0; i < cidades.size(); ++i) {
-			if (i == 1 && j == 0){
+			if (i == 1 && j == 0) {
 				minimo_coluna = matrixA[i][j];
 			}
 			if (i != j) {
@@ -201,6 +203,19 @@ void Path::PathBranchBound(){
 		}
 		l++;
 	}
+
+	cout << "::::::::::::::::" << endl;
+
+	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			cout << matrixA[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	/*
+	 *Cálculo do minimum_bound
+	 */
 
 
 

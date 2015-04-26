@@ -14,12 +14,15 @@
 #include "Files.h"
 #include "Graph.h"
 
+static int n;
+
 class Path{
 	Graph<Cidade> g;
 	int minimum_bound;
 public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};
+	int returnN(){return n;};
 	void createGraph(File f);
 	void createGraphtestar();
 	bool verifica(Cidade c, int tempoDisponivel);

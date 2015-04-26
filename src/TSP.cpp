@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 /*
 	Viagem v = new Viagem();
 
