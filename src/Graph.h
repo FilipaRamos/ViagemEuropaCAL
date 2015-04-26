@@ -86,6 +86,7 @@ class Graph {
 
 	int ** W;   //weight
 	int ** P;   //path
+	int ** a;
 
 public:
 	bool addVertex(const T &in);
@@ -98,7 +99,7 @@ public:
 	vector<Vertex<T> * > getVertexSet() const;
 	int getNumVertex() const;
 
-	/////////////////
+	//
 
 	void floydWarshallShortestPath();
 	int edgeCost(int vOrigIndex, int vDestIndex);
@@ -288,6 +289,9 @@ int Graph<T>::edgeCost(int vOrigIndex, int vDestIndex)
 
 //ALGORITMO DO FLOYD WARSHALL
 
+/*
+ * Retorna o vector com a sequencia das ceidades da origem para o destino
+ */
 template<class T>
 vector<T> Graph<T>::getfloydWarshallPath(const T &origin, const T &dest){
 
@@ -346,6 +350,10 @@ void Graph<T>::getfloydWarshallPathAux(int index1, int index2, vector<T> & res)
 	}
 }
 
+/*
+ * Calcula o menor caminho pelo metodo do FW.
+ * So faz os calculos para o caminho
+ */
 template<class T>
 void Graph<T>::floydWarshallShortestPath() {
 

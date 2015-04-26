@@ -19,17 +19,16 @@ using namespace std;
  * Retorna um vector com as Cidades a serem usadas na construção do grafo.
  *
  */
-vector<Cidade> Knapsackproblem(Viagem v, Path p){
+vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 
 	vector<Cidade> res;
-
-	int a[v.getCidades().size()+1][p.calculaTempo()+1];
+	int a[v.getCidades().size()+1][tempoMax+1];
 	int iMax = 0;
 	int jMax = 0;
 	vector<pair<int,int> > classificacoes;
 
 	for(size_t i =0; i < v.getCidades().size()+1; ++i){
-		for(size_t j=0; j < p.calculaTempo()+1; ++j){
+		for(size_t j=0; j < tempoMax+1; ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}
@@ -55,12 +54,15 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 		}
 	}
 
+	//encontrar o maximo das classificações
 
 	sort(classificacoes.begin(), classificacoes.end());
 
 	iMax = classificacoes.at(classificacoes.size() -1).first;
 	jMax = classificacoes.at(classificacoes.size() -1).second;
 
+
+	//encontrar as cidades a serem usadas.
 
 	size_t j=jMax;
 	size_t i=iMax;
@@ -88,7 +90,7 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p){
 
 }
 
-vector<Cidade> Knapsackproblemtestar(){
+vector<Cidade> Knapsackproblemtestar(int tempoMax){
 
 	vector<Cidade> teste;
 
@@ -106,7 +108,7 @@ vector<Cidade> Knapsackproblemtestar(){
 
 	vector<Cidade> res;
 
-	int a[teste.size()+1][teste.size()+1];
+	int a[teste.size()+1][tempoMax+1];
 	int iMax = 0;
 	int jMax = 0;
 
@@ -114,7 +116,7 @@ vector<Cidade> Knapsackproblemtestar(){
 
 
 	for(size_t i=0; i < teste.size()+1 ; ++i){
-		for(size_t j=0; j < teste.size()+1 ; ++j){
+		for(size_t j=0; j < tempoMax+1 ; ++j){
 			if(i==0){
 				a[i][j] = 0;
 			}

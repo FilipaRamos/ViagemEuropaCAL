@@ -16,7 +16,7 @@
 #include "Path.h"
 #include "Files.h"
 
-vector<Cidade> Knapsackproblemtestar();
-vector<Cidade> Knapsackproblem(Viagem v, Path p);
+vector<Cidade> Knapsackproblemtestar(int tempoMax);
+vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax);
 
 #endif /* SRC_KNAPSACKPROBLEM_H_ */
