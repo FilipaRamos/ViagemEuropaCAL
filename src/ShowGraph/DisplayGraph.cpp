@@ -7,20 +7,6 @@
 DisplayGraph::DisplayGraph(){
 }
 
-<<<<<<< HEAD
-=======
-int DisplayGraph::StringInt(string st) {
-
-	std::istringstream ss(st);
-	int i;
-	ss >> i;
-	std::cout << i;
-
-	return i;
-
-}
-
->>>>>>> origin/master
 void DisplayGraph::Display(Graph<Cidade> gc) {
 
 	GraphViewer *gv = new GraphViewer(600, 600, true);
