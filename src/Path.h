@@ -19,7 +19,8 @@ static int n;
 class Path{
 	Graph<Cidade> g;
 	int minimum_bound;
-	vector<int> minimum_path;
+	vector<int> minimum_path; // guarda a sequência do caminho mais curto
+	vector<int> minimum_cost; // guarda o custo do caminho
 public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};

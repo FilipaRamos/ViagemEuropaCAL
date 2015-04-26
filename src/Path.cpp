@@ -242,93 +242,100 @@ void Path::PathBranchBound(){
 		}
 	}
 
-	vector<int> rL;
-	vector<int> rC;
 	/*
-	 * Reduzir por linha
+	 * Cálculo das matrizes R e S e cálculo do caminho
 	 */
-	minimo_linha = 50;
-	bool minimoL = false;
-	for (unsigned int i = 0; i < cidades.size(); ++i) {
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if (matrixR[i][j] != -1){
-				if (matrixR[i][j] < minimo_linha) {
-					minimo_linha = matrixR[i][j]; // encontrar o mínimo de cada linha
-					minimoL = true;
+	int coluna = 0;
+	for (unsigned int linha = 0; linha < cidades.size(); ++linha) {
+		while(coluna < (cidades.size()-(linha+1))) {
+			vector<int> rL;
+			vector<int> rC;
+			/*
+			 * Reduzir por linha
+			 */
+			minimo_linha = 50;
+			bool minimoL = false;
+			for (unsigned int i = 0; i < cidades.size(); ++i) {
+				for (unsigned int j = 0; j < cidades.size(); ++j) {
+					if (matrixR[i][j] != -1) {
+						if (matrixR[i][j] < minimo_linha) {
+							minimo_linha = matrixR[i][j]; // encontrar o mínimo de cada linha
+							minimoL = true;
+						}
+					}
 				}
+				if (minimoL == false)
+					rL.push_back(0);
+				else
+					rL.push_back(minimo_linha);
+				minimoL = false;
 			}
-		}
-		if(minimoL == false)
-			rL.push_back(0);
-		else
-			rL.push_back(minimo_linha);
-		minimoL = false;
-	}
-	/*
-	 * Subtrair a redução das linhas
-	 */
-	int kl = 0;
-	for (unsigned int i = 0; i < cidades.size(); ++i) {
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if (matrixR[i][j] != -1) {
-				int n = rL[kl];
-				if (rL[kl] != 0) {
-					matrixR[i][j] = matrixR[i][j] - n; // subtrair a redução
+			/*
+			 * Subtrair a redução das linhas
+			 */
+			int kl = 0;
+			for (unsigned int i = 0; i < cidades.size(); ++i) {
+				for (unsigned int j = 0; j < cidades.size(); ++j) {
+					if (matrixR[i][j] != -1) {
+						int n = rL[kl];
+						if (rL[kl] != 0) {
+							matrixR[i][j] = matrixR[i][j] - n; // subtrair a redução
+						}
+					}
 				}
+				kl++;
 			}
-		}
-		kl++;
-	}
-	/*
-	 * Reduzir por coluna
-	 */
-	minimo_coluna = 50;
-	bool minimoC = false;
-	for (unsigned int j = 0; j < cidades.size(); ++j) {
-		for (unsigned int i = 0; i < cidades.size(); ++i) {
-			if (matrixR[i][j] != -1) {
-				if (matrixR[i][j] < minimo_coluna) {
-					minimo_coluna = matrixR[i][j]; // encontrar o mínimo de cada coluna
-					minimoC = true;
+			/*
+			 * Reduzir por coluna
+			 */
+			minimo_coluna = 50;
+			bool minimoC = false;
+			for (unsigned int j = 0; j < cidades.size(); ++j) {
+				for (unsigned int i = 0; i < cidades.size(); ++i) {
+					if (matrixR[i][j] != -1) {
+						if (matrixR[i][j] < minimo_coluna) {
+							minimo_coluna = matrixR[i][j]; // encontrar o mínimo de cada coluna
+							minimoC = true;
+						}
+					}
 				}
+				if (minimoC == false)
+					rC.push_back(0);
+				else
+					rC.push_back(minimo_coluna);
+				minimoC = false;
 			}
-		}
-		if(minimoC == false)
-			rC.push_back(0);
-		else
-			rC.push_back(minimo_coluna);
-		minimoC = false;
-	}
-	/*
-	 * Subtrair a redução por coluna
-	 */
-	int cl = 0;
-	for (unsigned int j = 0; j < cidades.size(); ++j) {
-		for (unsigned int i = 0; i < cidades.size(); ++i) {
-			if (matrixR[i][j] != -1) {
-				int n = rC[cl];
-				if (rC[cl] != 0) {
-					matrixR[i][j] = matrixR[i][j] - n; // subtrair a redução
+			/*
+			 * Subtrair a redução por coluna
+			 */
+			int cl = 0;
+			for (unsigned int j = 0; j < cidades.size(); ++j) {
+				for (unsigned int i = 0; i < cidades.size(); ++i) {
+					if (matrixR[i][j] != -1) {
+						int n = rC[cl];
+						if (rC[cl] != 0) {
+							matrixR[i][j] = matrixR[i][j] - n; // subtrair a redução
+						}
+					}
 				}
+				cl++;
 			}
+			/*
+			 *Atualização do minimum_bound
+			 */
+			for (unsigned int i = 0; i < rL.size(); ++i) {
+				minimum_bound += rL[i];
+			}
+
+			for (unsigned int j = 0; j < rC.size(); ++j) {
+				minimum_bound += rC[j];
+			}
+
+			minimum_bound += matrixA[0][1];
+
+			cout << "#minimum_bound --> " << minimum_bound << endl;
 		}
-		cl++;
 	}
-	/*
-	 *Atualização do minimum_bound
-	 */
-	for (unsigned int i = 0; i < rL.size(); ++i) {
-		minimum_bound += rL[i];
-	}
-
-	for (unsigned int j = 0; j < rC.size(); ++j) {
-		minimum_bound += rC[j];
-	}
-
-	minimum_bound += matrixA[0][1];
-
-	cout << "#minimum_bound --> " << minimum_bound << endl;
-
 
 }
 
