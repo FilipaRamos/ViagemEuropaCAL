@@ -17,11 +17,15 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	gv->defineEdgeColor("BLUE");
 
 	gv->defineVertexColor("BLACK");
+
+	int x = 10, y = 10;
+
 	//ADICIONA OS NOS TODOS
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		gv->addNode(i);
+	for (size_t i = 0; i < gc.getVertexSet().size(); ++i , x++, y++) {
+		gv->addNode(i, x, y);
 
 		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
+
 	}
 
 	//TENTA ADICIONAR O EDGE

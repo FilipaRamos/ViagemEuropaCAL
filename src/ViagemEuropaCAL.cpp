@@ -23,8 +23,8 @@ int main(){
 	Path p;
 	DisplayGraph gd;
 	p.createGraph(file);
-	//gd.Display(p.getGraph());
-	//cin.get();
+	gd.Display(p.getGraph());
+	cin.get();
 	//Knapsackproblem(file.viagem, p, tempo_total);
 	//Knapsackproblemtestar(tempo_total);
 
