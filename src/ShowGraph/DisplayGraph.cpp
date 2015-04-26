@@ -9,9 +9,12 @@ DisplayGraph::DisplayGraph(){
 
 int DisplayGraph::StringInt(string st) {
 
-	const char *str1 = st.c_str();
+	std::istringstream ss(st);
+	int i;
+	ss >> i;
+	std::cout << i;
 
-	return atoi(str1);
+	return i;
 
 }
 
