@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdlib>
 
-
 DisplayGraph::DisplayGraph(){
 }
 
@@ -25,14 +24,16 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
 	}
 
-//TENTA ADICIONAR O EDGE
+	//TENTA ADICIONAR O EDGE
 	int id = 0;
 	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		unsigned int j = 0;
 		int no = i+1;
 		while (j < (gc.getVertexSet().size() - (i + 1))) {
+			stringstream ss;
+			ss << gc.getVertexSet().at(j)->getInfo().getTemposViagem().at(i);
 			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
-			gv->setEdgeLabel(id, "Isto e uma aresta");
+			gv->setEdgeLabel(id, ss.str());
 			j++;
 			id++;
 			no++;
