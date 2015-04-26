@@ -8,7 +8,6 @@
 #include "Path.h"
 
 Path::Path() {
-	n = g.getVertexSet().size();
 	minimum_bound = 0;
 }
 
@@ -93,6 +92,7 @@ void Path::createGraphtestar() {
 /*
  * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
  * depois de ser aplicada a resolução do problema da mochila
+ * Aplicação da fórmula --> minimum_bound(S) = minimum_bound(R) + A(i,j) + y
  */
 void Path::PathBranchBound(){
 	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
@@ -124,7 +124,7 @@ void Path::PathBranchBound(){
 	for (unsigned int i = 0; i < cidades.size(); ++i) { // cria a diagonal
 		for (unsigned int j = 0; j < cidades.size(); ++j) {
 			if (i == j)
-				matrixA[i][j] = -1; // 0 representa o infinito (viagem do nódulo para si próprio)
+				matrixA[i][j] = -1; // -1 representa o infinito (viagem do nódulo para si próprio)
 		}
 	}
 
@@ -216,8 +216,51 @@ void Path::PathBranchBound(){
 	/*
 	 *Cálculo do minimum_bound
 	 */
+	for (unsigned int i = 0; i < reducoes_linha.size(); ++i) {
+		minimum_bound += reducoes_linha[i];
+	}
+
+	for (unsigned int j = 0; j < reducoes_coluna.size(); ++j) {
+		minimum_bound += reducoes_coluna[j];
+	}
+
+	cout << "#minimum_bound --> " << minimum_bound << endl;
+
+	/*
+	 * Criação da matriz R
+	 */
+
+	int matrixR[cidades.size()][cidades.size()];
+
+	for (unsigned int i = 0; i < cidades.size(); ++i) {
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			matrixR[i][j] = matrixA[i][j];
+		}
+	}
+
+	cout << "::::::::::::::::" << endl;
+
+	for (unsigned int i = 0; i < cidades.size(); ++i) { // testar se a matriz está a ser bem construída
+		for (unsigned int j = 0; j < cidades.size(); ++j) {
+			cout << matrixR[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 
+	/*
+	 * Início do caminho
+	 */
+	for(unsigned int i = 0; i < 1; ++i){ // anular o caminho realizado
+		for(unsigned int j = 0; j < cidades.size(); ++j){
+			matrixA[i][j] = -1;
+		}
+	}
+
+	for(unsigned int j = 0; j < 1; ++j){
+
+
+	}
 
 }
 

@@ -19,6 +19,7 @@ static int n;
 class Path{
 	Graph<Cidade> g;
 	int minimum_bound;
+	vector<int> minimum_path;
 public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};
