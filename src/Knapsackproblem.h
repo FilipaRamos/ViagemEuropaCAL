@@ -18,5 +18,6 @@
 
 vector<Cidade> Knapsackproblemtestar(int tempoMax);
 vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax);
+void FWShortestPath();
 
 #endif /* SRC_KNAPSACKPROBLEM_H_ */

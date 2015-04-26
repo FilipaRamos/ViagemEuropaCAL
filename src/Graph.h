@@ -86,7 +86,7 @@ class Graph {
 
 	int ** W;   //weight
 	int ** P;   //path
-	int ** a;
+	int ** a;	//array used in Knapsack problem
 
 public:
 	bool addVertex(const T &in);
@@ -101,10 +101,13 @@ public:
 
 	//
 
+	int** getA() {return a;};
+	void setA(int** a) {this->a = a;}
 	void floydWarshallShortestPath();
 	int edgeCost(int vOrigIndex, int vDestIndex);
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest);
 	void getfloydWarshallPathAux(int index1, int index2, vector<T> & res);
+
 
 };
 
@@ -290,7 +293,7 @@ int Graph<T>::edgeCost(int vOrigIndex, int vDestIndex)
 //ALGORITMO DO FLOYD WARSHALL
 
 /*
- * Retorna o vector com a sequencia das ceidades da origem para o destino
+ * Retorna o vector com a sequencia das cidades da origem para o destino
  */
 template<class T>
 vector<T> Graph<T>::getfloydWarshallPath(const T &origin, const T &dest){
@@ -359,6 +362,8 @@ void Graph<T>::floydWarshallShortestPath() {
 
 	W = new int * [vertexSet.size()];
 	P = new int * [vertexSet.size()];
+
+
 	for(unsigned int i = 0; i < vertexSet.size(); i++)
 	{
 		W[i] = new int[vertexSet.size()];
