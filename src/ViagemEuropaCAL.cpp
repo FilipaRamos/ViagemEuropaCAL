@@ -11,6 +11,8 @@
 #include "Knapsackproblem.h"
 
 using namespace std;
+
+
 int main(){
 
 	int tempo_total;
@@ -25,7 +27,7 @@ int main(){
 	gd.Display(p.getGraph());
 	cin.get();
 	Knapsackproblem(file.viagem, p);
-	p.PathBranchBound();
+	//	p.PathBranchBound();
 	cout << "pintou!" << endl;
 	return 0;
 }
