@@ -21,7 +21,7 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	int x = 10, y = 10;
 
 	//ADICIONA OS NOS TODOS
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i , x++, y++) {
+	for (size_t i = 0; i < gc.getVertexSet().size(); ++i , ++x, ++y) {
 		gv->addNode(i, x, y);
 
 		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
