@@ -36,15 +36,6 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 		}
 	}
 
-	cout << "IMPRIMIR O A: " << endl;
-
-	for(size_t i=0; i < v.getCidades().size()+1; ++i){
-		for(size_t j=0; j < tempoMax +1; ++j){
-			cout << p.getGraph().getA()[i][j] << " ";
-		}
-		cout << endl;
-	}
-
 	int iMax = 0;
 	int jMax = 0;
 	vector<pair<int,int> > classificacoes;
@@ -59,6 +50,7 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 					int dif_tempos = j - p.getGraph().getVertexSet().at(i-1)->getInfo().getTempo();
 					if( p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + p.getGraph().getA()[i-1][dif_tempos] > p.getGraph().getA()[i-1][j]){
 						p.getGraph().getA()[i][j] = p.getGraph().getVertexSet().at(i-1)->getInfo().getClassificacao() + p.getGraph().getA()[i-1][dif_tempos];
+						// cria a mochila
 					}
 					else {
 						p.getGraph().getA()[i][j] = p.getGraph().getA()[i-1][j];
@@ -97,31 +89,7 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 		}
 		else  i--;
 	}
-
-	cout << "IMPRIMIR O A:  SEGUNDA VEZ" << endl;
-
-	for(size_t i=0; i < v.getCidades().size()+1; ++i){
-		for(size_t j=0; j < tempoMax +1; ++j){
-			cout << p.getGraph().getA()[i][j] << " ";
-		}
-		cout << endl;
-	}
-
-	cout << "VALOR MAXIMO" << endl;
-	cout << p.getGraph().getA()[iMax][jMax] << endl;
-
-
-	cout <<"///////////////////////////////////////////////////////////////////" << endl;
-
-	for(size_t i=0; i < res.size(); ++i){
-		cout << res[i].getNome() << endl;
-	}
-
-	cout <<"///////////////////////////////////////////////////////////////////" << endl;
-
-
 	return res;
-
 }
 
 vector<Cidade> Knapsackproblemtestar(int tempoMax){
@@ -274,59 +242,21 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 
 	cidadesAusar = ordenaVector(cidadesAusar, p);
 
-	for(size_t i=0; i < cidadesAusar.size(); ++i){
-		inteiroscidades.push_back(i);
-		cout << cidadesAusar[i].getNome() << endl;
-	}
-
-
-
 	while(std::next_permutation(inteiroscidades.begin(), inteiroscidades.end())){
-
-		/*
-		cout << "\n\n\n\n\n\n" << "inteiroscidades\n";
-
-		for(size_t i=0; i<inteiroscidades.size(); i++){
-			cout << inteiroscidades.at(i) << endl;
-		}
-		cout << "\n\n\n\n\n\n" ;
-		*/
 
 		tempos = 0;
 		tempos += tempoNasCidades(cidadesAusar);
 
-		/*
-		cout << "melhor sequencia\n";
-		for(size_t i=0; i<melhorsequencia.size(); i++){
-			cout <<  melhorsequencia.at(i) << endl;
-		}
-
-		cout << "ANTES DO FOR!!!!" << tempos << " " <<  melhorTempo << endl;
-		*/
-
 		for(size_t i=1; i < inteiroscidades.size(); ++i){
 
 			tempos += p.getGraph().getW()[posCidade(cidadesAusar.at(i-1),p)][posCidade(cidadesAusar.at(i),p)];
-/*
-			cout << "\n\n\n\n\n\n" << "inteiroscidades dentro do for\n";
-
-			for(size_t i=0; i<inteiroscidades.size(); i++){
-				cout << inteiroscidades.at(i) << endl;
-			}
-			cout << "\n\n\n\n\n\n" ;
-
-
-			cout << tempos << " " <<  melhorTempo << endl;
-
-			cout << "\n\n\n\n\n\n" ;
-*/
 
 			if(tempos <= melhorTempo){
-				cout << tempos << " " <<  melhorTempo << endl;
-				cout << "Passou no maior" << endl;
+				//cout << tempos << " " <<  melhorTempo << endl;
+				//cout << "Passou no maior" << endl;
 				melhorsequencia = inteiroscidades;
 				melhorTempo = tempos;
-				cout << "melhor sequencia\n";
+				//cout << "melhor sequencia\n";
 				for(size_t i=0; i<melhorsequencia.size(); i++){
 					cout <<  melhorsequencia.at(i) << endl;
 				}
@@ -336,8 +266,8 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 
 				if(tempos > melhorTempo){
 
-					cout << tempos << " " <<  melhorTempo << endl;
-					cout << "NAAAAAAAAAAAAAAAOOOOOOOOOOO" << endl;
+					//cout << tempos << " " <<  melhorTempo << endl;
+					//cout << "NAAAAAAAAAAAAAAAOOOOOOOOOOO" << endl;
 					tempos = 0;
 					tempos += tempoNasCidades(cidadesAusar);
 				}

@@ -33,6 +33,8 @@ int main(){
 	Path p;
 	p.createGraph(file);
 
+	vector<Cidade> cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+
 	cout << " Opções: " << endl;
 	cout << " 1. Visualizar grafo inicial" << endl;
 	cout << " 2. Calcular as cidades a visitar" << endl;
@@ -46,8 +48,11 @@ int main(){
 		Sleep(100000000);
 		break;
 	case 2:
-		//Knapsackproblem(file.viagem, p, tempo_total);
-		//Knapsackproblemtestar(tempo_total);
+		while (!FWShortestPath(p, cidadesAusar, tempo_total)) {
+			tempo_total--;
+			cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+		}
+		DisplayGraphFW(p, cidadesAusar);
 		break;
 	case 3:
 		p.CalculaCaminho();
