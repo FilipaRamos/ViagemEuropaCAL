@@ -9,6 +9,7 @@
 
 Path::Path() {
 	minimum_bound = 0;
+	tempo_total = 0;
 }
 
 /*
@@ -64,30 +65,122 @@ void Path::createGraph(File f) {
 }
 
 
-void Path::createGraphtestar() {
-
-	File f("teste.txt");
-		vector<Cidade> cidades = f.viagem.getCidades();
-
-		for(size_t k=0; k<3; k++){
-			cout << cidades[0].getTemposViagem().at(k) <<endl;
-		}
-
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			g.addVertex(cidades[i]);
-			cout << g.getVertexSet()[i]->getInfo().getNome() << endl;
-		}
-
-		for (size_t i = 0; i < cidades.size(); ++i) {
-			unsigned int j = 0;
-			while (j < (cidades.size() - (i + 1))) {
-				g.addEdge(cidades[i], cidades[i+1], cidades[i].getTemposViagem()[j]);
-				cout << g.getVertexSet().at(i)->getAdj().at(j).getWeight()<< endl;
-				++j;
+/*
+ * Reduzir a matrix por linha
+ */
+void Path::ReduzirLinha(int ** matrix){
+	vector<int> reducoes_linha;
+	/*
+	 * Encontra os mínimos de cada linha
+	 */
+	for (unsigned int i = 0; i < g.getVertexSet().size(); ++i) {
+		int minimo_linha = 5000;
+		bool infinite = false;
+		for (unsigned int j = 0; j < g.getVertexSet().size(); ++j) {
+			if (i != j) {
+				if(matrix[i][j] != -1){
+					if(matrix[i][j] < minimo_linha){
+						minimo_linha = matrix[i][j];
+						infinite = true;
+					}
+				}
 			}
 		}
+		if(infinite = false)
+			reducoes_linha.push_back(0);
+		else
+			reducoes_linha.push_back(minimo_linha);
+		/*
+		*Subtrair os minimos de cada linha
+		*/
+		for(unsigned int k = 0; k < g.getVertexSet().size(); ++k){
+			matrix[i][k] = matrix[i][k] - reducoes_linha[k];
+		}
 
+	}
+	/*
+	 * Atualizar o bound
+	 */
+	CalculaBound(reducoes_linha);
 }
+
+/*
+ * Reduzir a matrix por coluna
+ */
+void Path::ReduzirColuna(int **  matrix){
+	vector<int> reducoes_coluna;
+	/*
+	 * Encontra os mínimos de cada coluna
+	 */
+	for (unsigned int j = 0; j < g.getVertexSet().size(); j++) {
+		int minimo_coluna = 5000;
+		bool infinite = false;
+		for (unsigned int i = 0; i < g.getVertexSet().size(); i++) {
+			if (i != j) {
+				if (matrix[i][j] != -1) {
+					if (matrix[i][j] < minimo_coluna) {
+						minimo_coluna = matrix[i][j];
+						infinite = true;
+					}
+				}
+			}
+		}
+		if (infinite = false)
+			reducoes_coluna.push_back(0);
+		else
+			reducoes_coluna.push_back(minimo_coluna);
+		/*
+		 *Subtrair os minimos de cada linha
+		 */
+		for (unsigned int k = 0; k < g.getVertexSet().size(); ++k) {
+			matrix[j][k] = matrix[j][k] - reducoes_coluna[k];
+		}
+	}
+	CalculaBound(reducoes_coluna);
+}
+
+/*
+ * Calcula o bound mínimo
+ */
+void Path::CalculaBound(vector<int> &v){
+	for(unsigned int i = 0; i < v.size(); i++){
+		minimum_bound += v[i];
+	}
+}
+
+int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, string &path){
+	unsigned int j = 0;
+	int tempo_minimo = 5000;
+	int indice = 0;
+	bool found = false;
+	while (j < (cidades.size() - (partida + 1))) {
+		if (cidades[partida]->getInfo().getTemposViagem()[j] < tempo_minimo) {
+			tempo_minimo = cidades[partida]->getInfo().getTemposViagem()[j];
+			indice = partida + (j+1);
+			found = true;
+		}
+		++j;
+	}
+	if(found == true)
+		tempo_total += tempo_minimo;
+	path = path + "-->" + cidades[partida]->getInfo().getNome();
+	return indice;
+}
+
+void Path::CalculaCaminho(){
+	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
+	string path;
+	for(unsigned int i = 0; i < cidades.size(); ++i){
+		calculaNovoCaminho(i, cidades, path);
+	}
+	cout << "path\1: " << path << endl;
+	for(unsigned int j = cidades.size(); j > 0; --j){
+		calculaNovoCaminho(j, cidades, path);
+	}
+	cout << "path: " << path << endl;
+	cout << "TEMPO_TOTAL: " << tempo_total << endl;
+}
+
 
 /*
  * Utiliza o algoritmo de Branch and Bound para encontrar o caminho mais curto
@@ -96,12 +189,10 @@ void Path::createGraphtestar() {
  */
 void Path::PathBranchBound(){
 	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
-
 	/*
-	 * cálculo do minimum bound e da matriz adjacente
+	 * cálculo da matriz adjacente
 	 */
-	int matrixA[n][n];
-
+	int matrixA[cidades.size()][cidades.size()];
 	/*
 	 * criar a matriz adjacente não reduzida
 	 */
@@ -109,8 +200,7 @@ void Path::PathBranchBound(){
 		unsigned int j = 0;
 		int posicao = i + 1;
 		while (j < (cidades.size() - (i + 1))) {
-			matrixA[i][posicao] =
-					g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
+			matrixA[i][posicao] = g.getVertexSet()[i]->getInfo().getTemposViagem().at(j);
 			posicao++;
 			j++;
 		}
@@ -130,86 +220,10 @@ void Path::PathBranchBound(){
 	}
 
 	/*
-	 * Reduzir a matrix
+	 * Reduzir a matriz
 	 */
-	vector<int> reducoes_linha; // guarda as reduções de linha para mais tarde somá-las e obter o minimum bound
-	vector<int> reducoes_coluna; // guarda as reduções de coluna para mais tarde somá-las e obter o minimum bound
-
-	/*
-	 * Reduzir por linha
-	 */
-	int minimo_linha;
-	for (unsigned int i = 0; i < cidades.size(); ++i) {
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if (i == 0 && j == 1)
-				minimo_linha = matrixA[i][j];
-			if (i != j) {
-				if (matrixA[i][j] < minimo_linha) {
-					minimo_linha = matrixA[i][j]; // encontrar o mínimo de cada linha
-				}
-			}
-		}
-		reducoes_linha.push_back(minimo_linha);
-	}
-
-	/*
-	 * Subtrair a redução das linhas
-	 */
-	int k = 0;
-	for (unsigned int i = 0; i < cidades.size(); ++i) {
-		for (unsigned int j = 0; j < cidades.size(); ++j) {
-			if (i != j) {
-				int n = reducoes_linha[k];
-				matrixA[i][j] = matrixA[i][j] - n; // subtrair a redução
-			}
-		}
-		k++;
-	}
-
-	/*
-	 * Reduzir por coluna
-	 */
-	int minimo_coluna;
-	for (unsigned int j = 0; j < cidades.size(); ++j) {
-		for (unsigned int i = 0; i < cidades.size(); ++i) {
-			if (i == 1 && j == 0) {
-				minimo_coluna = matrixA[i][j];
-			}
-			if (i != j) {
-				if (matrixA[i][j] < minimo_coluna) {
-					minimo_coluna = matrixA[i][j]; // encontrar o mínimo de cada coluna
-				}
-			}
-		}
-		reducoes_coluna.push_back(minimo_coluna);
-	}
-
-	/*
-	 * Subtrair a redução por coluna
-	 */
-	int l = 0;
-	for (unsigned int j = 0; j < cidades.size(); ++j) {
-		for (unsigned int i = 0; i < cidades.size(); ++i) {
-			if (i != j) {
-				int c = reducoes_coluna[l];
-				matrixA[i][j] = matrixA[i][j] - c; // subtrair a redução
-			}
-		}
-		l++;
-	}
-
-	/*
-	 *Cálculo do minimum_bound inicial
-	 */
-	for (unsigned int i = 0; i < reducoes_linha.size(); ++i) {
-		minimum_bound += reducoes_linha[i];
-	}
-
-	for (unsigned int j = 0; j < reducoes_coluna.size(); ++j) {
-		minimum_bound += reducoes_coluna[j];
-	}
-
-	cout << "#minimum_bound --> " << minimum_bound << endl;
+	//reduzirLinha(matrixA);
+	//reduzirColuna(matrixA);
 
 	/*
 	 * Criação da matriz R
@@ -365,13 +379,12 @@ void Path::PathBranchBound(){
 			}
 		}
 		int minimo = minimum_cost[0];
-		for(unsigned int i = 1; i <= minimum_cost.size(); ++i){
+		for (unsigned int i = 1; i <= minimum_cost.size(); ++i) {
 			cout << "custo em dias: " << minimum_cost[i] << endl;
-			if(minimum_cost[i] < minimo){
+			if (minimum_cost[i] < minimo) {
 				minimo = minimum_cost[i];
 			}
 		}
 	}
-
 }
 

@@ -12,6 +12,7 @@
 #include "Knapsackproblem.h"
 
 using namespace std;
+
 int main(){
 
 	int tempo_total;
@@ -19,13 +20,15 @@ int main(){
 	string nome;
 	DisplayGraph gd;
 
-
 	cout << "Qual o ficheiro a ler ?" << endl;
 	cin >> nome;
-	cout << "Ficheiro " << nome  << " a ser aberto....... "<< endl;
+	cout << "Ficheiro " << nome  << " a ser aberto....... " << endl;
+	cout << ".......................................... " << endl;
 
 	File file (nome);
 	tempo_total = file.readFile();
+	if(tempo_total == -1)
+		return 0;
 
 	Path p;
 	p.createGraph(file);
@@ -47,7 +50,7 @@ int main(){
 		//Knapsackproblemtestar(tempo_total);
 		break;
 	case 3:
-		p.PathBranchBound();
+		p.CalculaCaminho();
 		break;
 	default:
 		break;
