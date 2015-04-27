@@ -30,6 +30,7 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 		p.getGraph().getA()[i] = new int [tempoMax+1];
 	}
 
+	//INICIALIZAR TUDO A ZERO
 	for(size_t i=0; i < v.getCidades().size()+1; ++i){
 		for(size_t j=0; j < tempoMax +1; ++j){
 			p.getGraph().getA()[i][j] = 0;
@@ -40,8 +41,8 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax){
 	int jMax = 0;
 	vector<pair<int,int> > classificacoes;
 
-	for(size_t i =0; i < v.getCidades().size()+1; ++i){
-		for(size_t j=0; j < tempoMax+1; ++j){
+	for(size_t i =0; i < v.getCidades().size(); ++i){
+		for(size_t j=0; j < tempoMax; ++j){
 			if(i==0){
 				p.getGraph().getA()[i][j] = 0;
 			}
@@ -242,16 +243,29 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 
 	cidadesAusar = ordenaVector(cidadesAusar, p);
 
+<<<<<<< HEAD
+=======
+	for(size_t i=0; i < cidadesAusar.size(); ++i){
+		inteiroscidades.push_back(i);
+		cout << cidadesAusar[i].getNome() << endl;
+	}
+
+>>>>>>> origin/master
 	while(std::next_permutation(inteiroscidades.begin(), inteiroscidades.end())){
 
 		tempos = 0;
 		tempos += tempoNasCidades(cidadesAusar);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 		for(size_t i=1; i < inteiroscidades.size(); ++i){
 
 			tempos += p.getGraph().getW()[posCidade(cidadesAusar.at(i-1),p)][posCidade(cidadesAusar.at(i),p)];
 
 			if(tempos <= melhorTempo){
+<<<<<<< HEAD
 				//cout << tempos << " " <<  melhorTempo << endl;
 				//cout << "Passou no maior" << endl;
 				melhorsequencia = inteiroscidades;
@@ -260,14 +274,23 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 				for(size_t i=0; i<melhorsequencia.size(); i++){
 					cout <<  melhorsequencia.at(i) << endl;
 				}
+=======
+				cout << "entrou no IF" << endl;
+				melhorsequencia = inteiroscidades;
+				melhorTempo = tempos;
+>>>>>>> origin/master
 			}
 
 			else{
 
 				if(tempos > melhorTempo){
+<<<<<<< HEAD
 
 					//cout << tempos << " " <<  melhorTempo << endl;
 					//cout << "NAAAAAAAAAAAAAAAOOOOOOOOOOO" << endl;
+=======
+					cout << "entrou no ELSE" << endl;
+>>>>>>> origin/master
 					tempos = 0;
 					tempos += tempoNasCidades(cidadesAusar);
 				}
@@ -277,20 +300,8 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 		}
 	}
 
-	cout << melhorTempo << endl;
 
-	cout << tempos << endl;
-
-	cout << "melhor sequencia\n";
-	for(size_t i=0; i<melhorsequencia.size(); i++){
-		cout <<  melhorsequencia.at(i) << endl;
-	}
-
-	cout << "VALOR DA DISTANCIA ENTRE A PRIMEIRA E ULTIMA CIDADE:\n" << p.getGraph().getW()[posCidade(cidadesAusar.at(0),p)][posCidade(cidadesAusar.at(melhorsequencia.size()-1),p)];
-
-//	return  (melhorTempo + p.getGraph().getW()[posCidade(cidadesAusar.at(0),p)][posCidade(cidadesAusar.at(melhorsequencia.size()-1),p)]) <= tempoMax;
-
-	return false;
+	return  (melhorTempo + p.getGraph().getW()[posCidade(cidadesAusar.at(0),p)][posCidade(cidadesAusar.at(melhorsequencia.size()-1),p)]) <= tempoMax;
 
 }
 
@@ -312,13 +323,13 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax){
 void DisplayGraphFW(Path p, vector<Cidade> cidadesAusar){
 
 	p.getGraph().floydWarshallShortestPath();
+	cidadesAusar = ordenaVector(cidadesAusar, p);
 
-	for(size_t i=1; i< cidadesAusar.size(); ++i){
-		cout << "entrou" <<endl;
-		for(size_t j=0; j < (p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i))).size(); ++j){
-			cout << p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i)).at(j).getNome() << " -> " ;
+
+	for(size_t i=0; i< cidadesAusar.size(); ++i){
+			cout << cidadesAusar.at(i).getNome() << " -> " ;
 		}
-		cout << (p.getGraph().getfloydWarshallPath(cidadesAusar.at(i-1),cidadesAusar.at(i))).size();
-	}
+
+	cout << cidadesAusar.at(0).getNome() << endl;
 
 }
