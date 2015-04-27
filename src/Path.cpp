@@ -170,15 +170,12 @@ int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, stri
 void Path::CalculaCaminho(){
 	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
 	string path;
+	int destino = 0;
 	for(unsigned int i = 0; i < cidades.size(); ++i){
-		calculaNovoCaminho(i, cidades, path);
-	}
-	cout << "path 1: " << path << endl;
-	for(unsigned int j = cidades.size(); j > 0; --j){
-		calculaNovoCaminho(j, cidades, path);
+		destino = calculaNovoCaminho(destino, cidades, path);
 	}
 	cout << "path: " << path << endl;
-	cout << "TEMPO_TOTAL: " << tempo_total << endl;
+	cout << "Tempo total necessário: " << tempo_total << " dias." <<  endl;
 }
 
 
