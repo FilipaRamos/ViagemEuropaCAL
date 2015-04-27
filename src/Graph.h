@@ -103,6 +103,7 @@ public:
 
 	int** getA() {return a;};
 	void setA(int** a) {this->a = a;}
+	int** getW() const {return W;}
 	void floydWarshallShortestPath();
 	int edgeCost(int vOrigIndex, int vDestIndex);
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest);

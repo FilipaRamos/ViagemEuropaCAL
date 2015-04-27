@@ -16,8 +16,11 @@
 #include "Path.h"
 #include "Files.h"
 
+
+
 vector<Cidade> Knapsackproblemtestar(int tempoMax);
 vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax);
-void FWShortestPath();
+bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax);
+void DisplayGraphFW(Path p, vector<Cidade> cidadesAusar);
 
 #endif /* SRC_KNAPSACKPROBLEM_H_ */
