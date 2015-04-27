@@ -173,7 +173,7 @@ void Path::CalculaCaminho(){
 	for(unsigned int i = 0; i < cidades.size(); ++i){
 		calculaNovoCaminho(i, cidades, path);
 	}
-	cout << "path\1: " << path << endl;
+	cout << "path 1: " << path << endl;
 	for(unsigned int j = cidades.size(); j > 0; --j){
 		calculaNovoCaminho(j, cidades, path);
 	}
