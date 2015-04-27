@@ -22,5 +22,6 @@ vector<Cidade> Knapsackproblemtestar(int tempoMax);
 vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax);
 bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax);
 void DisplayGraphFW(Path p, vector<Cidade> cidadesAusar);
+vector<Cidade> ordenaVector(vector<Cidade> cidadesAusar, Path p);
 
 #endif /* SRC_KNAPSACKPROBLEM_H_ */
