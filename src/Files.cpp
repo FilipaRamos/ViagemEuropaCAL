@@ -65,7 +65,7 @@ int File::readFile(){
 
 	else{
 		cout << "----  Error reading file!  ---- " << endl;
-		return 0;
+		return -1;
 	}
 
 	return tempo_disponivel;
