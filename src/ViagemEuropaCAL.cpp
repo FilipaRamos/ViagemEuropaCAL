@@ -48,11 +48,17 @@ int main(){
 		Sleep(100000000);
 		break;
 	case 2:
-		while (!FWShortestPath(p, cidadesAusar, tempo_total)) {
-			tempo_total--;
-			cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+		if (tempoNasCidades(cidadesAusar) >= tempo_total)
+			cout << "Nao  é possivel criar um caminho." << endl;
+		else {
+
+			while (!FWShortestPath(p, cidadesAusar, tempo_total)) {
+				tempo_total--;
+				cout << "\n" << tempo_total << endl;
+				cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+			}
+			DisplayGraphFW(p, cidadesAusar);
 		}
-		DisplayGraphFW(p, cidadesAusar);
 		break;
 	case 3:
 		p.CalculaCaminho();
@@ -60,6 +66,7 @@ int main(){
 	default:
 		break;
 	}
+
 
 	return 0;
 }

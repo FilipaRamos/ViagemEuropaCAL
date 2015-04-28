@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 
-DisplayGraph::DisplayGraph(){
+DisplayGraph::DisplayGraph() {
 }
 
 void DisplayGraph::Display(Graph<Cidade> gc) {
@@ -21,35 +21,33 @@ void DisplayGraph::Display(Graph<Cidade> gc) {
 	int x = 10, y = 10;
 
 	//ADICIONA OS NOS TODOS
-<<<<<<< HEAD
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i , ++x, ++y) {
+	for (unsigned int i = 0; i < gc.getVertexSet().size(); ++i, ++x, ++y) {
 		gv->addNode(i, x, y);
+		for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
+			gv->addNode(i);
+			gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
 
-=======
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		gv->addNode(i);
->>>>>>> origin/master
-		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
+		}
 
-	}
-
-	//TENTA ADICIONAR O EDGE
-	int id = 0;
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
-		unsigned int j = 0;
-		int no = i+1;
-		while (j < (gc.getVertexSet().size() - (i + 1))) {
-			gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
-			int  number = gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(j);
-			ostringstream ss;
-			ss << number;
-			gv->setEdgeLabel(id, ss.str());
-			j++;
-			id++;
-			no++;
+		//TENTA ADICIONAR O EDGE
+		int id = 0;
+		for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
+			unsigned int j = 0;
+			int no = i + 1;
+			while (j < (gc.getVertexSet().size() - (i + 1))) {
+				gv->addEdge(id, i, no, EdgeType::UNDIRECTED);
+				int number =
+						gc.getVertexSet().at(i)->getInfo().getTemposViagem().at(
+								j);
+				ostringstream ss;
+				ss << number;
+				gv->setEdgeLabel(id, ss.str());
+				j++;
+				id++;
+				no++;
+			}
 		}
 	}
-
 }
 
 
