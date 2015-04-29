@@ -278,7 +278,7 @@ bool FWShortestPath(Path p, vector<Cidade> cidadesAusar, int tempoMax) {
 		tempos = 0;
 		tempos += tempoNasCidades(cidadesAusar);
 
-		for (size_t i = 1; i < inteiroscidades.size(); ++i) {
+		for (size_t i = 1; i <= inteiroscidades.size(); ++i) {
 			cout << "\nDENTRO DO FOR!!!\n" << endl;
 			tempos +=
 					p.getGraph().getW()[posCidade(cidadesAusar.at(i - 1), p)][posCidade(

@@ -23,10 +23,19 @@ void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar
 
 	gv->defineVertexColor("BLACK");
 
-	int x = 10, y = 10;
+
 
 
 	//ADICIONA OS NOS TODOS
+<<<<<<< HEAD
+
+
+	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
+		gv->addNode(i);
+
+		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
+
+=======
 	for (unsigned int i = 0; i < gc.getVertexSet().size(); ++i, ++x, ++y) {
 		gv->addNode(i, x, y);
 		for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
@@ -54,6 +63,7 @@ void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar
 				no++;
 			}
 		}
+>>>>>>> origin/master
 	}
 }
 
@@ -105,6 +115,8 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 		gv->setEdgeLabel(id, string.str());*/
 
 	}
+<<<<<<< HEAD
+=======
 
 	return gv;
 }
@@ -112,6 +124,7 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 
 void DisplayGraph::closeDisplay(GraphViewer gv){
 	gv.closeWindow();
+>>>>>>> origin/master
 }
 
 

@@ -13,7 +13,15 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 /*
+=======
+<<<<<<< HEAD
+/*
+=======
+
+>>>>>>> origin/master
+>>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
 int main(){
 	int tempo_total;
 	int option;
@@ -92,8 +100,45 @@ int main(){
 
 	return 0;
 }
+<<<<<<< HEAD
  */
 
+=======
+*/
+
+<<<<<<< HEAD
+int main(){
+
+ int tempo_total;
+ string nome = "teste.txt";
+ cout << nome << endl;
+ File file (nome);
+ tempo_total = file.readFile();
+ cout << tempo_total << endl;
+ Path p;
+ //DisplayGraph gd;
+ p.createGraph(file);
+ //gd.Display(p.getGraph());
+ //cin.get();
+ vector<Cidade> cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+ //FWShortestPath(p, cidadesAusar,tempo_total);
+
+ while(!FWShortestPath(p, cidadesAusar,tempo_total)){
+  tempo_total--;
+  cout << "\n" <<tempo_total << endl;
+  cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+ }
+
+
+ DisplayGraphFW(p,cidadesAusar);
+ //Knapsackproblemtestar(15);
+
+ //p.PathBranchBound();
+ return 0;
+}
+=======
+/*
+>>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
 int main(){
 	int tempo_total;
 	string nome = "teste.txt";
@@ -136,4 +181,9 @@ int main(){
 	//p.PathBranchBound();
 	return 0;
 }
+<<<<<<< HEAD
 
+=======
+ */
+>>>>>>> origin/master
+>>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff

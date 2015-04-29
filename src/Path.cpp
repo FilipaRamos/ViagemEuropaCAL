@@ -167,6 +167,7 @@ int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, stri
 	if (found == true)
 		tempo_total += tempo_minimo;
 	path = path + "-->" + cidades[partida]->getInfo().getNome();
+	minimum_path.push_back(cidades[partida]->getInfo());
 	return indice;
 }
 
