@@ -13,7 +13,7 @@ DisplayGraph::DisplayGraph() {
  */
 void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar,bool setColorEdge) {
 
-	GraphViewer *gv = new GraphViewer(600, 600, true);
+	gv = new GraphViewer(600, 600, true);
 
 	gv->setBackground("background.jpg");
 
@@ -64,7 +64,7 @@ void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar
  */
 GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidadesAusar,bool setColorEdge) {
 
-	GraphViewer *gv = new GraphViewer(600, 600, true);
+	gv = new GraphViewer(600, 600, true);
 
 	gv->setBackground("background.jpg");
 
@@ -111,22 +111,42 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 }
 
 
-GraphViewer * DisplayGraph::DisplayBranchAndBound(Graph<Cidade> gc , vector<Cidade> cidadesAusar, bool setColorEdge){
-		GraphViewer *gv = new GraphViewer(600, 600, true);
+GraphViewer * DisplayGraph::DisplayBranchBound(Graph<Cidade> gc , vector<Cidade> minimum_Path){
+	gv = new GraphViewer(600, 600, true);
 
-		gv->setBackground("background.jpg");
+	gv->setBackground("background.jpg");
 
-		gv->createWindow(600, 600);
+	gv->createWindow(600, 600);
 
-		gv->defineEdgeColor("BLUE");
+	gv->defineEdgeColor("GRAY");
 
-		gv->defineVertexColor("BLACK");
+	gv->defineVertexColor("CYAN");
 
+	//ADICIONA OS NOS TODOS
+	for (unsigned int i = 0; i < minimum_Path.size(); ++i) {
+		gv->addNode(i);
+		for (size_t i = 0; i < minimum_Path.size(); ++i) {
+			gv->addNode(i);
+			gv->setVertexLabel(i, minimum_Path[i].getNome());
+			if(minimum_Path[i].getClassificacao() == 10)
+				gv->setVertexColor(i,"YELLOW");
+		}
+
+		//TENTA ADICIONAR O EDGE
+		int id = 0;
+		for (size_t i = 1; i < minimum_Path.size(); ++i) {
+			gv->addEdge(id, i-1, i, EdgeType::DIRECTED);
+			id++;
+		}
+		gv->addEdge(id, minimum_Path.size() - 1, 0, EdgeType::DIRECTED);
+
+	}
+	return gv;
 }
 
 
-void DisplayGraph::closeDisplay(GraphViewer gv){
-	gv.closeWindow();
+void DisplayGraph::closeDisplay(){
+	getGraphViewer().closeWindow();
 }
 
 

@@ -13,17 +13,7 @@
 
 using namespace std;
 
-/*
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-/*
-=======
 
->>>>>>> origin/master
->>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
-=======
->>>>>>> b7ed8831aabfee8fbcec41e4493af6d8d82b615f
 int main(){
 	int tempo_total;
 	int option;
@@ -46,11 +36,13 @@ int main(){
 	p.createGraph(file);
 
 	vector<Cidade> cidadesAusar = file.viagem.getCidades();
+	//vector<Cidade> mininum_Path = p.minimum_Path;
 
 	cout << " Opções: " << endl;
 	cout << " 1. Visualizar grafo inicial" << endl;
 	cout << " 2. Calcular as cidades a visitar" << endl;
 	cout << " 3. Calcular o tempo que demoraria a visitar todas as cidades" << endl;
+	cout << " 4. Visualizar grafo Branch and Bound" << endl;
 
 	cin >> option;
 	switch(option){
@@ -59,8 +51,8 @@ int main(){
 		setColorEdge = (tempo_total <= tempoNasCidades(cidadesAusar));
 		gd.DisplayInitialG(p.getGraph(),cidadesAusar, setColorEdge);
 		cin.get();
-		Sleep(100000000);
-
+		Sleep(10000);
+		gd.closeDisplay();
 		break;
 	case 2:
 		if (tempoNasCidades(cidadesAusar) >= tempo_total)
@@ -85,7 +77,8 @@ int main(){
 				g = gd.DisplayPath(p.getGraph(), cidadesAusar, setColorEdge);
 				cin.get();
 				Sleep(100000);
-				g->closeWindow();
+				//g->closeWindow();
+				gd.closeDisplay();
 			}
 			else
 				cout << "Erro! Opção Inválida!" << endl;
@@ -95,6 +88,11 @@ int main(){
 	case 3:
 		p.CalculaCaminho();
 		break;
+
+	case 4:
+	//	gd.DisplayBranchBound(p.getGraph(), minimum_Path);
+		cin.get();
+		break;
 	default:
 		break;
 	}
@@ -102,11 +100,15 @@ int main(){
 
 	return 0;
 }
-<<<<<<< HEAD
- */
 
-=======
-*/
+
+
+
+
+
+
+
+/*
 
 int main(){
 
@@ -139,7 +141,6 @@ int main(){
 }
 
 /*
->>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
 int main(){
 	int tempo_total;
 	string nome = "teste.txt";
@@ -182,12 +183,4 @@ int main(){
 	//p.PathBranchBound();
 	return 0;
 }
-<<<<<<< HEAD
-
-=======
  */
-<<<<<<< HEAD
->>>>>>> origin/master
->>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
-=======
->>>>>>> b7ed8831aabfee8fbcec41e4493af6d8d82b615f

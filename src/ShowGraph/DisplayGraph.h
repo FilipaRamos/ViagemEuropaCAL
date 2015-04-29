@@ -19,12 +19,14 @@
 
 
 class DisplayGraph {
+	GraphViewer *gv;
 public:
 	DisplayGraph();
+	GraphViewer getGraphViewer() { return *gv; };
 	void DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
 	GraphViewer *DisplayPath(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
-	GraphViewer *DisplayBranchAndBound(Graph<Cidade> gc , vector<Cidade> cidadesAusar, bool setColorEdge);
-	void closeDisplay(GraphViewer gv);
+	GraphViewer *DisplayBranchBound(Graph<Cidade> gc , vector<Cidade> mininum_Path);
+	void closeDisplay();
 };
 
 #endif /* SRC_DISPLAYGRAPH_H_ */
