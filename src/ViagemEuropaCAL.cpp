@@ -18,8 +18,10 @@ int main(){
 
 	int tempo_total;
 	int option;
+	int imprimir;
 	string nome;
 	DisplayGraph gd;
+	GraphViewer * g;
 
 	cout << "Qual o ficheiro a ler ?" << endl;
 	cin >> nome;
@@ -46,21 +48,35 @@ int main(){
 	case 1:
 		bool setColorEdge;
 		setColorEdge = (tempo_total <= tempoNasCidades(cidadesAusar));
-		gd.Display(p.getGraph(),cidadesAusar, setColorEdge);
+		gd.DisplayInitialG(p.getGraph(),cidadesAusar, setColorEdge);
 		cin.get();
 		Sleep(100000000);
+
 		break;
 	case 2:
 		if (tempoNasCidades(cidadesAusar) >= tempo_total)
 			cout << "Nao  é possivel criar um caminho." << endl;
 		else {
-
 			while (!FWShortestPath(p, cidadesAusar, tempo_total)) {
 				tempo_total--;
 				cout << "\n" << tempo_total << endl;
 				cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
 			}
-			DisplayGraphFW(p, cidadesAusar);
+			cout << "Imprimir: " << endl;
+			cout << "1. Consola" << endl;
+			cout << "2. GraphViewer" << endl;
+			cin >> imprimir;
+			if(imprimir == 1)
+				DisplayGraphFW(p, cidadesAusar);
+			else if (imprimir == 2){
+				g = gd.DisplayPath(p.getGraph(), cidadesAusar, setColorEdge);
+				cin.get();
+				Sleep(100000);
+				g->closeWindow();
+			}
+			else
+				cout << "Erro! Opção Inválida!" << endl;
+
 		}
 		break;
 	case 3:
