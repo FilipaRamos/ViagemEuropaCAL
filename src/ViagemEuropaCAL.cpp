@@ -101,45 +101,6 @@ int main(){
 	return 0;
 }
 
-
-
-
-
-
-
-
-/*
-
-int main(){
-
- int tempo_total;
- string nome = "teste.txt";
- cout << nome << endl;
- File file (nome);
- tempo_total = file.readFile();
- cout << tempo_total << endl;
- Path p;
- //DisplayGraph gd;
- p.createGraph(file);
- //gd.Display(p.getGraph());
- //cin.get();
- vector<Cidade> cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
- //FWShortestPath(p, cidadesAusar,tempo_total);
-
- while(!FWShortestPath(p, cidadesAusar,tempo_total)){
-  tempo_total--;
-  cout << "\n" <<tempo_total << endl;
-  cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
- }
-
-
- DisplayGraphFW(p,cidadesAusar);
- //Knapsackproblemtestar(15);
-
- //p.PathBranchBound();
- return 0;
-}
-
 /*
 int main(){
 	int tempo_total;
@@ -151,6 +112,7 @@ int main(){
 	Path p;
 	//DisplayGraph gd;
 	p.createGraph(file);
+	bool parar = false;
 	//gd.Display(p.getGraph());
 	//cin.get();
 
@@ -162,14 +124,16 @@ int main(){
 
 		vector<Cidade> cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
 
-		while(!FWShortestPath(p, cidadesAusar,tempo_total)){
+		while(!FWShortestPath(p, cidadesAusar,tempo_total) && !parar){
 			if( tempo_total <= tempoNasCidades(cidadesAusar) ){
-				cout << "Nao  é possivel criar um caminho." <<endl;
-				return 0;
+				parar = true;
 			}
-			tempo_total--;
-			cout << "\n" <<tempo_total << endl;
-			cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+			else {
+				tempo_total--;
+				cout << "\n" <<tempo_total << endl;
+				cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
+			}
+
 		}
 		if( tempo_total <= tempoNasCidades(cidadesAusar) )
 			cout << "Nao  é possivel criar um caminho." <<endl;
@@ -183,4 +147,4 @@ int main(){
 	//p.PathBranchBound();
 	return 0;
 }
- */
+*/
