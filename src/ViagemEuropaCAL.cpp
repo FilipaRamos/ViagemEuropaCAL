@@ -13,8 +13,8 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 /*
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 /*
@@ -22,6 +22,8 @@ using namespace std;
 
 >>>>>>> origin/master
 >>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
+=======
+>>>>>>> b7ed8831aabfee8fbcec41e4493af6d8d82b615f
 int main(){
 	int tempo_total;
 	int option;
@@ -106,7 +108,6 @@ int main(){
 =======
 */
 
-<<<<<<< HEAD
 int main(){
 
  int tempo_total;
@@ -136,7 +137,7 @@ int main(){
  //p.PathBranchBound();
  return 0;
 }
-=======
+
 /*
 >>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
 int main(){
@@ -185,5 +186,8 @@ int main(){
 
 =======
  */
+<<<<<<< HEAD
 >>>>>>> origin/master
 >>>>>>> 5f42b85a2e0862df711f9d15dc4892d218b618ff
+=======
+>>>>>>> b7ed8831aabfee8fbcec41e4493af6d8d82b615f
