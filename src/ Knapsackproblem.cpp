@@ -13,6 +13,7 @@
 using namespace std;
 
 
+
 /*
  *
  * Resolve o problema da mochila aplicado a Grafos.
@@ -23,6 +24,7 @@ using namespace std;
 vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax) {
 
 	vector<Cidade> res;
+	int tempoViagem =0;
 	//int a[v.getCidades().size()+1][tempoMax+1];
 
 	p.getGraph().setA(new int *[v.getCidades().size() + 1]);
@@ -37,7 +39,6 @@ vector<Cidade> Knapsackproblem(Viagem v, Path p, int tempoMax) {
 			p.getGraph().getA()[i][j] = 0;
 		}
 	}
-
 
 	int iMax = 0;
 	int jMax = 0;

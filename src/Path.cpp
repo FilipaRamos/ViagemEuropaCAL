@@ -148,6 +148,9 @@ void Path::CalculaBound(vector<int> &v){
 	}
 }
 
+/*
+ * Calcula um novo caminho usando o método nearestNeighbour
+ */
 int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, string &path){
 	unsigned int j = 0;
 	int tempo_minimo = 5000;
@@ -156,17 +159,20 @@ int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, stri
 	while (j < (cidades.size() - (partida + 1))) {
 		if (cidades[partida]->getInfo().getTemposViagem()[j] < tempo_minimo) {
 			tempo_minimo = cidades[partida]->getInfo().getTemposViagem()[j];
-			indice = partida + (j+1);
+			indice = partida + (j + 1);
 			found = true;
 		}
 		++j;
 	}
-	if(found == true)
+	if (found == true)
 		tempo_total += tempo_minimo;
 	path = path + "-->" + cidades[partida]->getInfo().getNome();
 	return indice;
 }
 
+/*
+ * Calcula o caminho final usando o método nearestNeighbour
+ */
 void Path::CalculaCaminho(){
 	vector<Vertex<Cidade> *> cidades = g.getVertexSet();
 	string path;

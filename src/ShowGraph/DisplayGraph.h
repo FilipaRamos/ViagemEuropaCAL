@@ -21,7 +21,9 @@
 class DisplayGraph {
 public:
 	DisplayGraph();
-	void Display(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
+	void DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
+	GraphViewer *DisplayPath(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
+	void closeDisplay(GraphViewer gv);
 };
 
 #endif /* SRC_DISPLAYGRAPH_H_ */
