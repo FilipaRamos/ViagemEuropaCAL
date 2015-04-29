@@ -13,11 +13,7 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 /*
-=======
-
->>>>>>> origin/master
 int main(){
 
 	int tempo_total;
@@ -95,7 +91,6 @@ int main(){
 }
 */
 
-<<<<<<< HEAD
 int main(){
 
  int tempo_total;
@@ -125,7 +120,7 @@ int main(){
  //p.PathBranchBound();
  return 0;
 }
-=======
+
 /*
 int main(){
 
@@ -167,4 +162,3 @@ int main(){
 	return 0;
 }
  */
->>>>>>> origin/master

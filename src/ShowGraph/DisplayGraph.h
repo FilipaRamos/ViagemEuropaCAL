@@ -23,6 +23,7 @@ public:
 	DisplayGraph();
 	void DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
 	GraphViewer *DisplayPath(Graph<Cidade> gc, vector<Cidade> cidadesAusar, bool setColorEdge);
+	GraphViewer *DisplayBranchAndBound(Graph<Cidade> gc , vector<Cidade> cidadesAusar, bool setColorEdge);
 	void closeDisplay(GraphViewer gv);
 };
 

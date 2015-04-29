@@ -24,25 +24,18 @@ void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar
 	gv->defineVertexColor("BLACK");
 
 
-
-
 	//ADICIONA OS NOS TODOS
-<<<<<<< HEAD
-
-
-	for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
+	/*for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 		gv->addNode(i);
 
-		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
+		gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());*/
 
-=======
-	for (unsigned int i = 0; i < gc.getVertexSet().size(); ++i, ++x, ++y) {
-		gv->addNode(i, x, y);
+	for (unsigned int i = 0; i < gc.getVertexSet().size(); ++i) {
 		for (size_t i = 0; i < gc.getVertexSet().size(); ++i) {
 			gv->addNode(i);
 			gv->setVertexLabel(i, gc.getVertexSet().at(i)->getInfo().getNome());
 			if(gc.getVertexSet().at(i)->getInfo().getClassificacao() == 10)
-					gv->setVertexColor(i,"YELLOW");
+				gv->setVertexColor(i,"YELLOW");
 		}
 
 		//TENTA ADICIONAR O EDGE
@@ -63,7 +56,6 @@ void DisplayGraph::DisplayInitialG(Graph<Cidade> gc, vector<Cidade> cidadesAusar
 				no++;
 			}
 		}
->>>>>>> origin/master
 	}
 }
 
@@ -92,7 +84,7 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 			gv->addNode(i);
 			gv->setVertexLabel(i, cidadesAusar[i].getNome());
 			if(cidadesAusar[i].getClassificacao() == 10)
-					gv->setVertexColor(i,"YELLOW");
+				gv->setVertexColor(i,"YELLOW");
 		}
 
 		//TENTA ADICIONAR O EDGE
@@ -115,16 +107,26 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 		gv->setEdgeLabel(id, string.str());*/
 
 	}
-<<<<<<< HEAD
-=======
-
 	return gv;
+}
+
+
+GraphViewer * DisplayGraph::DisplayBranchAndBound(Graph<Cidade> gc , vector<Cidade> cidadesAusar, bool setColorEdge){
+		GraphViewer *gv = new GraphViewer(600, 600, true);
+
+		gv->setBackground("background.jpg");
+
+		gv->createWindow(600, 600);
+
+		gv->defineEdgeColor("BLUE");
+
+		gv->defineVertexColor("BLACK");
+
 }
 
 
 void DisplayGraph::closeDisplay(GraphViewer gv){
 	gv.closeWindow();
->>>>>>> origin/master
 }
 
 
