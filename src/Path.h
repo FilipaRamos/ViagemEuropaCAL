@@ -26,6 +26,7 @@ class Path{
 public:
 	Path();
 	Graph<Cidade>& getGraph(){return g;};
+	vector<Cidade> getMinimumPath() { return minimum_path;};
 	int returnN(){return n;};
 	void createGraph(File f);
 	void createGraphtestar();
