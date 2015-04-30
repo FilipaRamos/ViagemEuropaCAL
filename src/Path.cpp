@@ -157,10 +157,11 @@ int Path::calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, stri
 	int indice = 0;
 	bool found = false;
 	while (j < (cidades.size() - (partida + 1))) {
-		if (cidades[partida]->getInfo().getTemposViagem()[j] < tempo_minimo) {
+		if (cidades[partida]->getInfo().getTemposViagem()[j] < tempo_minimo && !cidades[partida+j+1]->getVisited()) {
 			tempo_minimo = cidades[partida]->getInfo().getTemposViagem()[j];
 			indice = partida + (j + 1);
 			found = true;
+			cidades[indice]->setVisited();
 		}
 		++j;
 	}
@@ -181,8 +182,9 @@ void Path::CalculaCaminho(){
 	for(unsigned int i = 0; i < cidades.size(); ++i){
 		destino = calculaNovoCaminho(destino, cidades, path);
 	}
+	path = path + "-->" + cidades[0]->getInfo().getNome();
 	cout << "path: " << path << endl;
-	cout << "Tempo total necessário: " << tempo_total << " dias." <<  endl;
+	cout << "Tempo total necessário: " << 2*tempo_total << " dias." <<  endl;
 }
 
 

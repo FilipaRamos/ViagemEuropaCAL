@@ -90,6 +90,7 @@ int main(){
 		break;
 
 	case 4:
+		p.CalculaCaminho();
 		gd.DisplayBranchBound(p.getGraph(), mininum_Path);
 		cin.get();
 		Sleep(10000);

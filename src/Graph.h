@@ -36,6 +36,8 @@ public:
 	friend class Graph<T>;
 	T getInfo(){return info;};
 	vector<Edge<T>  > getAdj(){return adj;};
+	void setVisited(){visited = true;};
+	bool getVisited(){return visited;};
 };
 
 
