@@ -13,14 +13,32 @@
 #include "Viagem.h"
 #include "Files.h"
 #include "Graph.h"
+#include <algorithm>
+
+static int n;
 
 class Path{
 	Graph<Cidade> g;
+	int minimum_bound;
+	int tempo_total;
+	vector<Cidade> minimum_path; // guarda a sequência do caminho mais curto
+	vector<int> minimum_cost; // guarda o custo do caminho
 public:
 	Path();
-	void createGraph();
+	Graph<Cidade>& getGraph(){return g;};
+	vector<Cidade> getMinimumPath() { return minimum_path;};
+	int returnN(){return n;};
+	void createGraph(File f);
+	void createGraphtestar();
 	bool verifica(Cidade c, int tempoDisponivel);
 	int	calculaTempo();
+	void PathBranchBound();
+	void ReduzirLinha(int ** matrix);
+	void ReduzirColuna(int ** matrix);
+	void CalculaBound(vector<int> &v);
+	double CalculaMatrix(int partida, int destino,int ** m);
+	void CalculaCaminho();
+	int calculaNovoCaminho(int partida, vector<Vertex<Cidade> *> cidades, string &path);
 };
 
 

@@ -16,5 +16,6 @@ Barcelona
 4
 1
 Porto
-10
+9
 4
+

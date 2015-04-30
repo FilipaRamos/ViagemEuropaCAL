@@ -14,7 +14,7 @@ Cidade::Cidade(string n, int c, int t){
 }
 
 string Cidade::getNome(){
-	return this->nome;
+	return nome;
 }
 
 int Cidade::getClassificacao(){
@@ -25,11 +25,11 @@ int Cidade::getTempo(){
 	return tempo;
 }
 
-list<int>& Cidade::getTemposViagem(){
+vector<int>& Cidade::getTemposViagem(){
 	return tempos_viagem;
 }
 
-void Cidade::addDistancia(int d){
+void Cidade::addTempoViagem(int d){
 	/*
 	 * vai permitir que as distâncias fiquem ordenadas
 	 * segundo a ordem em que foram introduzidas no txt
@@ -42,4 +42,6 @@ bool Cidade::operator == (Cidade c){
 		return true;
 	return false;
 }
+
+
 

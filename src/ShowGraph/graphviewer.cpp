@@ -1,4 +1,4 @@
-/*#include "graphviewer.h"
+#include "graphviewer.h"
 #include <string>
 #include<sstream>
 
@@ -200,4 +200,4 @@ bool GraphViewer::setEdgeFlow(int id, int flow) {
 
 bool GraphViewer::rearrange() {
   return con->sendMsg("rearrange\n");
-}*/
+}
