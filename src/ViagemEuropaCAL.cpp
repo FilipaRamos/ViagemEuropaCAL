@@ -36,7 +36,7 @@ int main(){
 	p.createGraph(file);
 
 	vector<Cidade> cidadesAusar = file.viagem.getCidades();
-	//vector<Cidade> mininum_Path = p.minimum_Path;
+	vector<Cidade> mininum_Path = p.getMinimumPath();
 
 	cout << " Opções: " << endl;
 	cout << " 1. Visualizar grafo inicial" << endl;
@@ -90,8 +90,10 @@ int main(){
 		break;
 
 	case 4:
-	//	gd.DisplayBranchBound(p.getGraph(), minimum_Path);
+		gd.DisplayBranchBound(p.getGraph(), mininum_Path);
 		cin.get();
+		Sleep(10000);
+		gd.closeDisplay();
 		break;
 	default:
 		break;
