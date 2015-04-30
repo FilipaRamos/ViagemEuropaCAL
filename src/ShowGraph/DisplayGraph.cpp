@@ -76,42 +76,37 @@ GraphViewer * DisplayGraph::DisplayPath(Graph<Cidade> gc, vector<Cidade> cidades
 
 	int x = 10, y = 10;
 
-
 	//ADICIONA OS NOS TODOS
-	for (unsigned int i = 0; i < cidadesAusar.size(); ++i, ++x, ++y) {
-		gv->addNode(i, x, y);
-		for (size_t i = 0; i < cidadesAusar.size(); ++i) {
-			gv->addNode(i);
-			gv->setVertexLabel(i, cidadesAusar[i].getNome());
-			if(cidadesAusar[i].getClassificacao() == 10)
-				gv->setVertexColor(i,"YELLOW");
-		}
-
-		//TENTA ADICIONAR O EDGE
-		int id = 0;
-		unsigned int j = 0;
-		for (size_t i = 1; i < cidadesAusar.size(); ++i) {
-			gv->addEdge(id, i-1, i, EdgeType::DIRECTED);
-			//int number = cidadesAusar[i-1].getTemposViagem().at(j);
-			//ostringstream ss;
-			//ss << number;
-			//gv->setEdgeLabel(id, ss.str());
-			j++;
-			id++;
-		}
-		gv->addEdge(id, cidadesAusar.size() - 1, 0, EdgeType::DIRECTED);
-		/*cout << id << endl;
-		int label = cidadesAusar[0].getTemposViagem().at(cidadesAusar.size()-1);
-		ostringstream string;
-		string << label;
-		gv->setEdgeLabel(id, string.str());*/
-
+	for (size_t i = 0; i < cidadesAusar.size(); ++i) {
+		gv->addNode(i);
+		gv->setVertexLabel(i, cidadesAusar[i].getNome());
+		if (cidadesAusar[i].getClassificacao() == 10)
+			gv->setVertexColor(i, "YELLOW");
 	}
+
+	//TENTA ADICIONAR O EDGE
+	int id = 0;
+	unsigned int j = 0;
+	for (size_t i = 1; i < cidadesAusar.size(); ++i) {
+		gv->addEdge(id, i - 1, i, EdgeType::DIRECTED);
+		//int number = cidadesAusar[i-1].getTemposViagem().at(j);
+		//ostringstream ss;
+		//ss << number;
+		//gv->setEdgeLabel(id, ss.str());
+		j++;
+		id++;
+	}
+	gv->addEdge(id, cidadesAusar.size() - 1, 0, EdgeType::DIRECTED);
+	/*cout << id << endl;
+	 int label = cidadesAusar[0].getTemposViagem().at(cidadesAusar.size()-1);
+	 ostringstream string;
+	 string << label;
+	 gv->setEdgeLabel(id, string.str());*/
 	return gv;
 }
 
 
-GraphViewer * DisplayGraph::DisplayBranchBound(Graph<Cidade> gc , vector<Cidade> minimum_Path){
+GraphViewer * DisplayGraph::DisplayNearestNeighbour(Graph<Cidade> gc , vector<Cidade> minimum_Path){
 	gv = new GraphViewer(600, 600, true);
 
 	gv->setBackground("background.jpg");
@@ -123,24 +118,21 @@ GraphViewer * DisplayGraph::DisplayBranchBound(Graph<Cidade> gc , vector<Cidade>
 	gv->defineVertexColor("CYAN");
 
 	//ADICIONA OS NOS TODOS
-	for (unsigned int i = 0; i < minimum_Path.size(); ++i) {
+	for (size_t i = 0; i < minimum_Path.size(); ++i) {
 		gv->addNode(i);
-		for (size_t i = 0; i < minimum_Path.size(); ++i) {
-			gv->addNode(i);
-			gv->setVertexLabel(i, minimum_Path[i].getNome());
-			if(minimum_Path[i].getClassificacao() == 10)
-				gv->setVertexColor(i,"YELLOW");
-		}
-
-		//TENTA ADICIONAR O EDGE
-		int id = 0;
-		for (size_t i = 1; i < minimum_Path.size(); ++i) {
-			gv->addEdge(id, i-1, i, EdgeType::DIRECTED);
-			id++;
-		}
-		gv->addEdge(id, minimum_Path.size() - 1, 0, EdgeType::DIRECTED);
-
+		gv->setVertexLabel(i, minimum_Path[i].getNome());
+		if (minimum_Path[i].getClassificacao() == 10)
+			gv->setVertexColor(i, "YELLOW");
 	}
+
+	//TENTA ADICIONAR O EDGE
+	int id = 0;
+	for (size_t i = 0; i < minimum_Path.size()-1; ++i) {
+		gv->addEdge(id, i, i+1, EdgeType::DIRECTED);
+		id++;
+	}
+	gv->addEdge(id, minimum_Path.size() - 1, 0, EdgeType::DIRECTED);
+
 	return gv;
 }
 

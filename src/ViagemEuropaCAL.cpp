@@ -36,13 +36,12 @@ int main(){
 	p.createGraph(file);
 
 	vector<Cidade> cidadesAusar = file.viagem.getCidades();
-	vector<Cidade> mininum_Path = p.getMinimumPath();
+	vector<Cidade> mininum_Path;
 
 	cout << " Opções: " << endl;
 	cout << " 1. Visualizar grafo inicial" << endl;
 	cout << " 2. Calcular as cidades a visitar" << endl;
 	cout << " 3. Calcular o tempo que demoraria a visitar todas as cidades" << endl;
-	cout << " 4. Visualizar grafo Branch and Bound" << endl;
 
 	cin >> option;
 	switch(option){
@@ -51,7 +50,7 @@ int main(){
 		setColorEdge = (tempo_total <= tempoNasCidades(cidadesAusar));
 		gd.DisplayInitialG(p.getGraph(),cidadesAusar, setColorEdge);
 		cin.get();
-		Sleep(10000);
+		Sleep(1000000);
 		gd.closeDisplay();
 		break;
 	case 2:
@@ -64,7 +63,6 @@ int main(){
 					return 0;
 				}
 				tempo_total--;
-				cout << "\n" << tempo_total << endl;
 				cidadesAusar = Knapsackproblem(file.viagem, p, tempo_total);
 			}
 			cout << "Imprimir: " << endl;
@@ -74,7 +72,7 @@ int main(){
 			if(imprimir == 1)
 				DisplayGraphFW(p, cidadesAusar);
 			else if (imprimir == 2){
-				g = gd.DisplayPath(p.getGraph(), cidadesAusar, setColorEdge);
+				gd.DisplayPath(p.getGraph(), cidadesAusar, setColorEdge);
 				cin.get();
 				Sleep(100000);
 				//g->closeWindow();
@@ -87,11 +85,8 @@ int main(){
 		break;
 	case 3:
 		p.CalculaCaminho();
-		break;
-
-	case 4:
-		p.CalculaCaminho();
-		gd.DisplayBranchBound(p.getGraph(), mininum_Path);
+		mininum_Path = p.getMinimumPath();
+		gd.DisplayNearestNeighbour(p.getGraph(), mininum_Path);
 		cin.get();
 		Sleep(10000);
 		gd.closeDisplay();
